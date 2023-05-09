@@ -23,15 +23,18 @@ mongoose.connection.on("disconnected", () => {
   console.log("mongoDb disconnected!");
 });
 
+app.use(express.json());
+
 /**
  * api endpoint: 요청이 auth라는 api에 접근하기 위한 URL.
  * URL로 서버에 요청을 보내고 서버는 해당 api 기능을 처리한다.
+ * /api/auth 경로로 들어왔을 때 authRoute 미들웨어 함수 처리
  */
-// middlewares
+// middlewares 라우팅 설정하기
 app.use("/api/auth", authRoute);
-app.use("/api/users", authRoute);
-app.use("/api/hotels", authRoute);
-app.use("/api/rooms", authRoute);
+app.use("/api/users", userRoute);
+app.use("/api/hotels", hotelsRoute);
+app.use("/api/rooms", roomsRoute);
 
 // 8080포트 연결
 app.listen(8800, () => {
