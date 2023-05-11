@@ -62,11 +62,16 @@ router.get("/:id", async (req, res) => {
 
 // GET ALL
 router.get("/", async (req, res, next) => {
+  /**
+   * get요청 시 failed가 true이면, next() 호출 (createError() 함수에 401 에러객체 전달)
+   * createError()는 에러객체 생성하기 위한 함수 (상태코드, 메세지를 입력받아 객체로 반환)
+   */
+  if (failed) return next(createError(401, "접근 권한이 없습니다."));
   try {
-    const hotels = await Hotel.find(req.params.id);
+    const hotels = await Hotel.find();
     res.status(200).json(hotels);
   } catch (err) {
-    res.status(500).json(err);
+    next(err);
   }
 });
 

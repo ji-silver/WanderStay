@@ -47,7 +47,7 @@ const HotelSchema = new mongoose.Schema({
     required: true,
   },
   // 반응형 앱에선 추천 호텔 보여줌
-  featered: {
+  featured: {
     type: Boolean,
     default: false,
   },

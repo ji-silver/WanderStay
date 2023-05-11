@@ -36,6 +36,20 @@ app.use("/api/users", userRoute);
 app.use("/api/hotels", hotelsRoute);
 app.use("/api/rooms", roomsRoute);
 
+// 에러처리 미들웨어 (err, req, res, next가 반드시 필요!)
+app.use((err, req, res, next) => {
+  // 서버 전역에서 에러 발생 시 err객체의 status, message를 추출하고 응답코드 500과 message를 나타내기
+  const errorStatus = err.status || 500;
+  const errorMessage = err.message || "서버 오류";
+  // 클라이언트에 전달 (stack은 디버깅 하기 위한 스택 추적 정보)
+  return res.status(errorStatus).json({
+    success: false,
+    status: errorStatus,
+    message: errorMessage,
+    stack: err.stack,
+  });
+});
+
 // 8080포트 연결
 app.listen(8800, () => {
   connect();
