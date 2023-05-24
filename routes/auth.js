@@ -1,15 +1,10 @@
 import express from "express";
+import { register, login } from "../controllers/auth.js";
 
-const router = express.Router(); // 라우터 내보내기
+const router = express.Router();
 
 // get method는 주소창에 입력해서 요청하기
-router.get("/", (req, res) => {
-  // 요청과 응답
-  res.send("hello auth endpoint");
-});
-
-router.get("/register", (req, res) => {
-  res.send("hello register endpoint");
-});
+router.post("/register", register);
+router.post("/login", login);
 
 export default router;

@@ -12,7 +12,7 @@ dotenv.config(); // .env파일에 환경변수 설정
 const connect = async () => {
   try {
     await mongoose.connect(process.env.MONGO); // connect 함수 안에 몽고 디비 연결하기
-    console.log("Connected to MongoDB");
+    console.log("정상적으로 MongoDB 서버에 연결되었습니다.");
   } catch (error) {
     // 연결이 안되면 에러 던지기
     throw error;
@@ -50,8 +50,8 @@ app.use((err, req, res, next) => {
   });
 });
 
-// 8080포트 연결
+// 8800포트 연결
 app.listen(8800, () => {
   connect();
-  console.log("Connected to backend");
+  console.log("8800 포트 연결 완료");
 });

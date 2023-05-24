@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-const { Schema } = mongoose;
 
 const HotelSchema = new mongoose.Schema({
   // 호텔 이름 필수
