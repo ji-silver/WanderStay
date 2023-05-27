@@ -51,13 +51,20 @@ export const getHotel = async (req, res, next) => {
   }
 };
 
-/**
- * get요청 시 failed가 true이면, next() 호출 (createError() 함수에 401 에러객체 전달)
- */
 export const getHotels = async (req, res, next) => {
+  const { min, max } = req.query;
   try {
-    const hotels = await Hotel.find(); // 모든 호텔 조회
-    res.status(200).json(hotels); // 조회된 모든 호텔 클라이언트에 반환
+    const hotels = await Hotel.find({
+      featured: true,
+      cheapestPrice: {
+        // 최소, 최대값 지정. gt: 1보다 크고, lt: 1000000보다 작은 것
+        //쿼리 파라미터가 문자열로 처리되기 떄문에 parseInt() 정수로 변환
+        // || 연산자를 사용하면 해당값보다 작거나 커도 기본으로 아래값으로 제한됨
+        $gt: parseInt(min) || 1,
+        $lt: parseInt(max) || 1000000,
+      },
+    }).limit(req.query.limit); // limit()는 개수 제한 (입력순 반환)
+    res.status(200).json(hotels);
   } catch (err) {
     next(err);
   }
@@ -75,6 +82,26 @@ export const countByCity = async (req, res, next) => {
       })
     );
     res.status(200).json(list);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const countByType = async (req, res, next) => {
+  try {
+    // Hotel 모델의 type 기준으로 개수 조회하기
+    const hotelCount = await Hotel.countDocuments({ type: "호텔" });
+    const motelCount = await Hotel.countDocuments({ type: "모텔" });
+    const resortCount = await Hotel.countDocuments({ type: "리조트" });
+    const cottageCount = await Hotel.countDocuments({ type: "펜션" });
+    const glampingCount = await Hotel.countDocuments({ type: "글램핑" });
+    res.status(200).json([
+      { type: "호텔", count: hotelCount },
+      { type: "모텔", count: motelCount },
+      { type: "리조트", count: resortCount },
+      { type: "펜션", count: cottageCount },
+      { type: "글램핑", count: glampingCount },
+    ]);
   } catch (err) {
     next(err);
   }

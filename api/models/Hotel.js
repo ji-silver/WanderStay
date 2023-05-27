@@ -54,6 +54,9 @@ const HotelSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  rating: {
+    type: Number,
+  },
 });
 
 export default mongoose.model("Hotel", HotelSchema);
