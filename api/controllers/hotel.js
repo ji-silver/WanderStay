@@ -5,17 +5,6 @@ import Hotel from "../models/Hotel.js";
  * 라우터 핸들러!
  * next => 현재 미들웨어 실행 후 다음 미들웨어로 넘어감
  */
-// export const createHotel = async (req, res, next) => {
-//   // Hotel model에 정의한 스키마에 따라 새로운 호텔 객체를 생성하고 클라이언트로 부터 받아온 body 데이터를 newHotel에 할당
-//   const newHotel = new Hotel(req.body);
-//   try {
-//     //save()는 mongoose 메서드로 mongoDb에 저장하는 역할, save()가 완료될 때까지 대기하고 결과를 savedHotel 할당
-//     const savedHotel = await newHotel.save();
-//     res.status(200).json(savedHotel); // 200성공한다면 savedHotel 반환 (json형식으로)
-//   } catch (err) {
-//     next(err);
-//   }
-// };
 
 export const createHotel = async (req, res, next) => {
   try {
@@ -69,6 +58,23 @@ export const getHotels = async (req, res, next) => {
   try {
     const hotels = await Hotel.find(); // 모든 호텔 조회
     res.status(200).json(hotels); // 조회된 모든 호텔 클라이언트에 반환
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const countByCity = async (req, res, next) => {
+  // URL에서 ? 뒤에 오는 파라미터를 쉼표로 분리해서 배열로 만들기
+  const cities = req.query.cities.split(",");
+  try {
+    // cities배열을 map()으로 돌린 새로운 배열을 Promise.all()에서 병렬(동시) 실행
+    // countDocuments()는 Hotel 모델에서 지정한 도시와 일치하는 문서 개수 조회
+    const list = await Promise.all(
+      cities.map((city) => {
+        return Hotel.countDocuments({ city: city });
+      })
+    );
+    res.status(200).json(list);
   } catch (err) {
     next(err);
   }
