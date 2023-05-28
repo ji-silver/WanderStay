@@ -52,16 +52,20 @@ export const getHotel = async (req, res, next) => {
 };
 
 export const getHotels = async (req, res, next) => {
-  const { min, max } = req.query;
+  const { min, max, ...others } = req.query;
   try {
     const hotels = await Hotel.find({
       featured: true,
+      ...others,
       cheapestPrice: {
-        // 최소, 최대값 지정. gt: 1보다 크고, lt: 1000000보다 작은 것
-        //쿼리 파라미터가 문자열로 처리되기 떄문에 parseInt() 정수로 변환
-        // || 연산자를 사용하면 해당값보다 작거나 커도 기본으로 아래값으로 제한됨
-        $gt: parseInt(min) || 1,
-        $lt: parseInt(max) || 1000000,
+        /**
+         * 최소, 최대값 지정. min보다 크거나 같고, max보다 작거나 같은 호텔 가격 검색
+         * gte: 크거나 같고, lte: 작거나 같다.
+         * 쿼리 파라미터가 문자열로 처리되기 떄문에 parseInt() 정수로 변환
+         * || 연산자를 사용하면 해당값보다 작거나 커도 기본으로 아래값으로 제한됨
+         */
+        $gte: parseInt(min) || 1,
+        $lte: parseInt(max) || 1000000,
       },
     }).limit(req.query.limit); // limit()는 개수 제한 (입력순 반환)
     res.status(200).json(hotels);
