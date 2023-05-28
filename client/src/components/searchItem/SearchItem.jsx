@@ -1,32 +1,35 @@
+import { Link } from "react-router-dom";
 import "./searchItem.css";
 
-const SearchItem = () => {
+const SearchItem = ({ item }) => {
   return (
     <div className="searchItem">
-      <img
-        src="https://cf.bstatic.com/xdata/images/hotel/square600/261707778.webp?k=fa6b6128468ec15e81f7d076b6f2473fa3a80c255582f155cae35f9edbffdd78&o=&s=1"
-        alt=""
-        className="siImg"
-      />
+      {/* photos는 배열이라서 첫번째 인덱스 보여주기*/}
+      <img src={item.photos[0]} alt="" className="siImg" />
       <div className="siDesc">
-        <h1 className="siTitle">시그니엘 서울</h1>
-        <span className="siDistance">
-          서울 강남/잠실지역 부터 직선거리 0.77km
-        </span>
+        <h1 className="siTitle">{item.name}</h1>
+        <span className="siDistance">{item.distance}</span>
         <span className="siSubtitle">Grand Deluxe Double Room</span>
-        <span className="siFeatures">1 King Bed Request</span>
+        <span className="siFeatures">{item.desc}</span>
         <span className="siCancelOp">무료 취소 가능</span>
         <span className="siCancelOpSubtitle">지금 예약하고 현장 결제하기</span>
       </div>
       <div className="siDetails">
-        <div className="siRating">
-          <span>평점</span>
-          <button>8.9</button>
-        </div>
+        {item.rating && (
+          <div className="siRating">
+            <span>평점</span>
+            <button>{item.rating}</button>
+          </div>
+        )}
         <div className="siDetailTexts">
-          <span className="siPrice">₩112,000</span>
+          <span className="siPrice">
+            ₩{parseInt(item.cheapestPrice).toLocaleString()}
+          </span>
           <span className="siTaxOp">세금 및 수수료 포함</span>
-          <button className="siCheckButton">예약하기</button>
+          {/* 버튼 클릭 시 페이지 URL을 item의 _id로 prop으로 전달해서 경로 설정*/}
+          <Link to={`hotels/${item._id}`}>
+            <button className="siCheckButton">예약하기</button>
+          </Link>
         </div>
       </div>
     </div>

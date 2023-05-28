@@ -11,6 +11,7 @@
   gap: 10px;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .fpImg {
@@ -29,16 +30,22 @@
 }
 
 .fpPrice {
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .fpRating > button {
   background-color: #f0e5de;
   color: #7c7877;
   border: none;
+  border-radius: 5px 5px 5px 0;
   padding: 3px;
+  margin-top: 10px;
   margin-right: 10px;
   font-weight: bold;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0.9;
 }
 
 .fpRating > span {

@@ -1,9 +1,9 @@
 .header {
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)),
-    url("https://pixabay.com/get/g90bab99e8b2dc70d069119bdae477d938266e630bc5baae53a285b4e7329266ee380fc176d6fab0ca39a3f7028dba7b1_1920.jpg");
+    url("../../../public/images/header.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: bottom;
+  background-position: center;
   color: white;
   display: flex;
   justify-content: center;

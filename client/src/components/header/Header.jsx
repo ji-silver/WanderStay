@@ -16,8 +16,9 @@ import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 
 const Header = ({ type }) => {
-  const [destination, setDestination] = useState("");
+  const [destination, setDestination] = useState(""); // 목적지
   const [openDate, setOpenDate] = useState(false);
+  // 체크인 체크아웃 날짜
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -43,6 +44,7 @@ const Header = ({ type }) => {
     });
   };
 
+  // 페이지 이동 시 state 객체 전달 (목적지, 날짜, options)
   const handleSearch = () => {
     navigate("/hotels", { state: { destination, date, options } });
   };
