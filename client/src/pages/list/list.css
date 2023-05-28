@@ -1,3 +1,15 @@
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .listContainer {
   display: flex;
   justify-content: center;
@@ -13,9 +25,9 @@
 
 .listSearch {
   flex: 1;
-  background-color: #d9d4cf;
   padding: 10px;
-  border-radius: 10px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
   position: sticky;
   top: 10px;
   height: max-content;
@@ -42,13 +54,18 @@
   height: 30px;
   border: none;
   padding: 5px;
+  background-color: #d9d4cf;
+  border-radius: 5px;
 }
 .lsItem > span {
   height: 30px;
   padding: 5px;
-  background-color: white;
+  background-color: #d9d4cf;
+  border-radius: 5px;
+  color: #7c7877;
   display: flex;
   align-items: center;
+  justify-content: center;
   cursor: pointer;
 }
 
@@ -59,24 +76,52 @@
 .lsOptionItem {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 10px;
   color: #555;
   font-size: 12px;
 }
+.lsOptionInputWrap {
+  display: flex;
+  align-items: center;
+  width: 94px;
+  height: 28px;
+  border-radius: 2px;
+  border: 1px solid #7c7877;
+  padding: 0 5px;
+}
 
 .lsOptionInput {
-  width: 50px;
+  border: none;
+  appearance: none;
+  width: 20px;
+  background-color: inherit;
+}
+
+.countInput {
+  background-color: inherit;
+  text-align: center;
+}
+
+.price {
+  width: 100%;
+  padding-left: 5px;
 }
 
 .listSearch > button {
-  background-color: inherit;
   border: 1px solid #7c7877;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 10px;
   color: #7c7877;
   width: 100%;
   font-weight: 500;
   cursor: pointer;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.listSearch > button:hover {
+  background-color: #d9d4cf;
 }
 
 .listResult {

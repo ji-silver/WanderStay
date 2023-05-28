@@ -1,5 +1,6 @@
 import {
   faBed,
+  faLocationDot,
   faCalendarDays,
   faCar,
   faPerson,
@@ -16,7 +17,7 @@ import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 
 const Header = ({ type }) => {
-  const [destination, setDestination] = useState(""); // 목적지
+  const [destination, setDestination] = useState("서울"); // 목적지
   const [openDate, setOpenDate] = useState(false);
   // 체크인 체크아웃 날짜
   const [date, setDate] = useState([
@@ -59,7 +60,7 @@ const Header = ({ type }) => {
         <div className="headerList">
           <div className="headerListItem active">
             <FontAwesomeIcon icon={faBed} />
-            <span>숙박</span>
+            <span>숙소</span>
           </div>
           <div className="headerListItem">
             <FontAwesomeIcon icon={faPlane} />
@@ -80,10 +81,11 @@ const Header = ({ type }) => {
             <p className="headerDesc">국내 인기 숙소 할인받고 예약하세요!</p>
             <div className="headerSearch">
               <div className="headerSearchItem">
-                <FontAwesomeIcon icon={faBed} className="headerIcon" />
+                <FontAwesomeIcon icon={faLocationDot} className="headerIcon" />
                 <input
                   type="text"
                   placeholder="목적지"
+                  value={destination}
                   className="headerSearchInput"
                   onChange={(e) => setDestination(e.target.value)}
                 />

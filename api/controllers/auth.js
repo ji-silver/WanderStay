@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { createError } from "../utils/error.js";
 
+// 가입하기
 export const register = async (req, res, next) => {
   try {
     // bcrypt로 비밀번호 암호화 하기
@@ -21,6 +22,7 @@ export const register = async (req, res, next) => {
   }
 };
 
+// 로그인
 export const login = async (req, res, next) => {
   try {
     // username 확인

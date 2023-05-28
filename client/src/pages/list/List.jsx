@@ -18,7 +18,7 @@ const List = () => {
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
 
-  // 목적지대로 get 하기
+  // 목적지, 최소, 최대 가격 옵션대로 get 하기
   const { data, loading, error, reFetch } = useFetch(
     `/hotels?city=${destination}&min=${min || 0}&max=${max || 1000000}`
   );
@@ -26,6 +26,15 @@ const List = () => {
   // 옵션대로 재검색 하기
   const handleClick = () => {
     reFetch();
+  };
+
+  const handleOption = (name, operation) => {
+    setOptions((prev) => {
+      return {
+        ...prev,
+        [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
+      };
+    });
   };
 
   return (
@@ -38,7 +47,11 @@ const List = () => {
             <h1 className="lsTitle">Search</h1>
             <div className="lsItem">
               <label>목적지</label>
-              <input placeholder={destination} type="text" />
+              <input
+                onChange={(e) => setDestination(e.target.value)}
+                placeholder={destination}
+                type="text"
+              />
             </div>
             <div className="lsItem">
               <label>체크인 / 체크아웃</label>
@@ -61,48 +74,99 @@ const List = () => {
                   <span className="lsOptionText">
                     최소 가격 <small>(1박당)</small>
                   </span>
-                  <input
-                    type="number"
-                    onChange={(e) => setMin(e.target.value)}
-                    className="lsOptionInput"
-                  />
+                  <div className="lsOptionInputWrap">
+                    ₩
+                    <input
+                      type="number"
+                      onChange={(e) => setMin(e.target.value)}
+                      className="lsOptionInput price"
+                    />
+                  </div>
                 </div>
                 <div className="lsOptionItem">
                   <span className="lsOptionText">
                     최대 가격 <small>(1박당)</small>
                   </span>
-                  <input
-                    type="number"
-                    onChange={(e) => setMax(e.target.value)}
-                    className="lsOptionInput"
-                  />
+                  <div className="lsOptionInputWrap">
+                    ₩
+                    <input
+                      type="number"
+                      onChange={(e) => setMax(e.target.value)}
+                      className="lsOptionInput price"
+                    />
+                  </div>
                 </div>
                 <div className="lsOptionItem">
                   <span className="lsOptionText">성인</span>
-                  <input
-                    type="number"
-                    min={1}
-                    className="lsOptionInput"
-                    placeholder={options.adult}
-                  />
+                  <div className="optionCounter">
+                    <button
+                      disabled={options.adult <= 1}
+                      className="optionCounterButton"
+                      onClick={() => handleOption("adult", "d")}
+                    >
+                      -
+                    </button>
+                    <input
+                      type="number"
+                      min={1}
+                      className="lsOptionInput countInput"
+                      placeholder={options.adult}
+                    />
+                    <button
+                      className="optionCounterButton"
+                      onClick={() => handleOption("adult", "i")}
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
                 <div className="lsOptionItem">
                   <span className="lsOptionText">아동</span>
-                  <input
-                    type="number"
-                    min={0}
-                    className="lsOptionInput"
-                    placeholder={options.children}
-                  />
+                  <div className="optionCounter">
+                    <button
+                      disabled={options.children <= 0}
+                      className="optionCounterButton"
+                      onClick={() => handleOption("children", "d")}
+                    >
+                      -
+                    </button>
+                    <input
+                      type="number"
+                      min={0}
+                      className="lsOptionInput countInput"
+                      placeholder={options.children}
+                    />
+                    <button
+                      className="optionCounterButton"
+                      onClick={() => handleOption("children", "i")}
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
                 <div className="lsOptionItem">
                   <span className="lsOptionText">객실</span>
-                  <input
-                    type="number"
-                    min={1}
-                    className="lsOptionInput"
-                    placeholder={options.room}
-                  />
+                  <div className="optionCounter">
+                    <button
+                      disabled={options.room <= 1}
+                      className="optionCounterButton"
+                      onClick={() => handleOption("room", "d")}
+                    >
+                      -
+                    </button>
+                    <input
+                      type="number"
+                      min={1}
+                      className="lsOptionInput countInput"
+                      placeholder={options.room}
+                    />
+                    <button
+                      className="optionCounterButton"
+                      onClick={() => handleOption("room", "i")}
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

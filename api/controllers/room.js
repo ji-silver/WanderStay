@@ -2,6 +2,7 @@ import Room from "../models/Room.js";
 import Hotel from "../models/Hotel.js";
 import { createError } from "../utils/error.js";
 
+// 방 추가
 export const createRoom = async (req, res, next) => {
   const hotelId = req.params.hotelid; // URL 경로에서 추출된 라우트 매개변수(호텔 id) 추출
   const newRoom = req.body; // 요청 본문에 담은 방 정보 저장
@@ -24,6 +25,7 @@ export const createRoom = async (req, res, next) => {
   }
 };
 
+// 방 수정
 export const updateRoom = async (req, res, next) => {
   try {
     const updatedRoom = await Room.findByIdAndUpdate(
@@ -55,6 +57,7 @@ export const deleteRoom = async (req, res, next) => {
   }
 };
 
+// 특정 방 불러오기
 export const getRoom = async (req, res, next) => {
   try {
     const room = await Room.findById(req.params.id);
@@ -64,6 +67,7 @@ export const getRoom = async (req, res, next) => {
   }
 };
 
+// 모든 방 불러오기
 export const getRooms = async (req, res, next) => {
   try {
     const rooms = await Room.find();

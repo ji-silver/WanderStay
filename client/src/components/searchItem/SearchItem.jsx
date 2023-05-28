@@ -26,8 +26,8 @@ const SearchItem = ({ item }) => {
             ₩{parseInt(item.cheapestPrice).toLocaleString()}
           </span>
           <span className="siTaxOp">세금 및 수수료 포함</span>
-          {/* 버튼 클릭 시 페이지 URL을 item의 _id로 prop으로 전달해서 경로 설정*/}
-          <Link to={`hotels/${item._id}`}>
+          {/* 버튼 클릭 시 페이지 경로를 해당 item의 _id를 prop으로 전달하기*/}
+          <Link to={`/hotels/${item._id}`}>
             <button className="siCheckButton">예약하기</button>
           </Link>
         </div>

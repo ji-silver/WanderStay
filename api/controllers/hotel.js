@@ -6,6 +6,7 @@ import Hotel from "../models/Hotel.js";
  * next => 현재 미들웨어 실행 후 다음 미들웨어로 넘어감
  */
 
+// 호텔 추가
 export const createHotel = async (req, res, next) => {
   try {
     const savedHotel = await Hotel.create(req.body);
@@ -19,6 +20,7 @@ export const createHotel = async (req, res, next) => {
  * mongoDB 내장함수인 findByIdAndUpdate()로 호텔 ID를 db에서 찾음
  * 첫번째 인자로 id, 두번째 인자로 $set 연산자를 이용해서 전달된 데이터 업데이트
  */
+// 호텔 수정
 export const updateHotel = async (req, res, next) => {
   try {
     // findByIdAndUpdate()는 mongoDB에서 id와 일치하는 것 찾기
@@ -33,6 +35,7 @@ export const updateHotel = async (req, res, next) => {
   }
 };
 
+// 호텔 삭제
 export const deleteHotel = async (req, res, next) => {
   try {
     await Hotel.findOneAndDelete(req.params.id); // id와 일치하는 호텔 삭제
@@ -42,6 +45,7 @@ export const deleteHotel = async (req, res, next) => {
   }
 };
 
+// 특정 호텔 불러오기
 export const getHotel = async (req, res, next) => {
   try {
     const hotel = await Hotel.findById(req.params.id); // id와 일치하는 호텔 찾기
@@ -51,29 +55,30 @@ export const getHotel = async (req, res, next) => {
   }
 };
 
+// 모든 호텔 불러오기 (옵션에 따라)
 export const getHotels = async (req, res, next) => {
   const { min, max, ...others } = req.query;
   try {
     const hotels = await Hotel.find({
-      featured: true,
       ...others,
       cheapestPrice: {
         /**
          * 최소, 최대값 지정. min보다 크거나 같고, max보다 작거나 같은 호텔 가격 검색
          * gte: 크거나 같고, lte: 작거나 같다.
-         * 쿼리 파라미터가 문자열로 처리되기 떄문에 parseInt() 정수로 변환
+         * 쿼리 파라미터가 문자열로 처리되기 때문에 parseInt() 정수로 변환
          * || 연산자를 사용하면 해당값보다 작거나 커도 기본으로 아래값으로 제한됨
          */
         $gte: parseInt(min) || 1,
         $lte: parseInt(max) || 1000000,
       },
-    }).limit(req.query.limit); // limit()는 개수 제한 (입력순 반환)
+    }).limit(parseInt(req.query.limit || 4)); // limit()는 개수 제한 (입력순 반환)
     res.status(200).json(hotels);
   } catch (err) {
     next(err);
   }
 };
 
+// 지역 호텔 개수 불러오기
 export const countByCity = async (req, res, next) => {
   // URL에서 ? 뒤에 오는 파라미터를 쉼표로 분리해서 배열로 만들기
   const cities = req.query.cities.split(",");
@@ -91,6 +96,7 @@ export const countByCity = async (req, res, next) => {
   }
 };
 
+// 호텔 타입 개수 불러오기
 export const countByType = async (req, res, next) => {
   try {
     // Hotel 모델의 type 기준으로 개수 조회하기
