@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
+import ko from "date-fns/locale/ko";
 import SearchItem from "../../components/searchItem/SearchItem";
 import useFetch from "../../hooks/useFetch";
 
@@ -12,7 +13,7 @@ const List = () => {
   // Header 컴포넌트에서 페이지 이동 시 전달받은 state객체를 초기값으로 설정 (목적지, 날짜, options)
   const location = useLocation();
   const [destination, setDestination] = useState(location.state.destination);
-  const [date, setDate] = useState(location.state.date);
+  const [dates, setDates] = useState(location.state.dates);
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState(location.state.options);
   const [min, setMin] = useState(undefined);
@@ -56,14 +57,16 @@ const List = () => {
             <div className="lsItem">
               <label>체크인 / 체크아웃</label>
               <span onClick={() => setOpenDate(!openDate)}>{`${format(
-                date[0].startDate,
+                dates[0].startDate,
                 "yyyy/MM/dd"
-              )} to ${format(date[0].endDate, "yyyy/MM/dd")}`}</span>
+              )} to ${format(dates[0].endDate, "yyyy/MM/dd")}`}</span>
               {openDate && (
                 <DateRange
-                  onChange={(item) => setDate([item.selection])}
+                  locale={ko}
+                  onChange={(item) => setDates([item.selection])}
                   minDate={new Date()}
-                  ranges={date}
+                  ranges={dates}
+                  dateDisplayFormat={"yyyy.MM.dd"}
                 />
               )}
             </div>

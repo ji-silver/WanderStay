@@ -10,17 +10,19 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./header.css";
 import { DateRange } from "react-date-range";
-import { useState } from "react";
+import ko from "date-fns/locale/ko";
+import { useContext, useState } from "react";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
+import { SearchContext } from "../../context/SearchContext";
 
 const Header = ({ type }) => {
   const [destination, setDestination] = useState("서울"); // 목적지
   const [openDate, setOpenDate] = useState(false);
   // 체크인 체크아웃 날짜
-  const [date, setDate] = useState([
+  const [dates, setDates] = useState([
     {
       startDate: new Date(),
       endDate: new Date(),
@@ -45,9 +47,14 @@ const Header = ({ type }) => {
     });
   };
 
-  // 페이지 이동 시 state 객체 전달 (목적지, 날짜, options)
+  //useContext를 호출헤서 SearchContext에 있는 dispatch 추출하기
+  const { dispatch } = useContext(SearchContext);
+
   const handleSearch = () => {
-    navigate("/hotels", { state: { destination, date, options } });
+    // dispatch 함수를 호출해서 액션을 발생시키고, 액션 객체를 전달하며 SearchReducer함수가 동작한다.
+    dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
+    // 페이지 이동 시 state 객체 전달 (목적지, 날짜, options)
+    navigate("/hotels", { state: { destination, dates, options } });
   };
 
   return (
@@ -95,18 +102,20 @@ const Header = ({ type }) => {
                 <span
                   onClick={() => setOpenDate(!openDate)}
                   className="headerSearchText"
-                >{`${format(date[0].startDate, "yyyy/MM/dd")} to ${format(
-                  date[0].endDate,
+                >{`${format(dates[0].startDate, "yyyy/MM/dd")} to ${format(
+                  dates[0].endDate,
                   "yyyy/MM/dd"
                 )}`}</span>
                 {openDate && (
                   <DateRange
+                    locale={ko}
                     editableDateInputs={true}
-                    onChange={(item) => setDate([item.selection])}
+                    onChange={(item) => setDates([item.selection])}
                     moveRangeOnFirstSelection={false}
-                    ranges={date}
+                    ranges={dates}
                     className="date"
                     minDate={new Date()}
+                    dateDisplayFormat={"yyyy.MM.dd"}
                   />
                 )}
               </div>

@@ -9,9 +9,10 @@ import {
   faCircleXmark,
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import { useLocation } from "react-router-dom";
+import { SearchContext } from "../../context/SearchContext";
 
 const Hotel = () => {
   const location = useLocation();
@@ -20,7 +21,19 @@ const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
 
-  const { data, loading, error, reFetch } = useFetch(`/hotels/find/${id}`);
+  const { data, loading, error } = useFetch(`/hotels/find/${id}`);
+
+  const { dates, options } = useContext(SearchContext);
+
+  // 날짜 사이의 일 수 계산
+  const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+  function dayDifference(date1, date2) {
+    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
+    return diffDays;
+  }
+
+  const days = dayDifference(dates[0].endDate, dates[0].startDate);
 
   const handleOpen = (i) => {
     setSlideNumber(i);
@@ -99,15 +112,21 @@ const Hotel = () => {
                 <p className="hotelDesc">{data.desc}</p>
               </div>
               <div className="hotelDetailsPrice">
-                <h1>Perfect for a 9-night stay!</h1>
-                <span>
-                  Located in the real heart of Krakow, this property has an
-                  excellent location score of 9.8!
-                </span>
+                <h1>{days}박 투숙에 적합!</h1>
+                <span>평점 {data.rating} 으로 투숙객 후기를 참고하세요!</span>
                 <h2>
-                  <b>$945</b> (9 nights)
+                  <b>
+                    ₩
+                    {(
+                      days *
+                      data.cheapestPrice *
+                      options.room
+                    ).toLocaleString()}
+                    원
+                  </b>{" "}
+                  ({days}박 기준)
                 </h2>
-                <button>Reserve or Book Now!</button>
+                <button>지금 예약</button>
               </div>
             </div>
           </div>

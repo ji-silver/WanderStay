@@ -79,7 +79,7 @@
 
 .hotelDetailsPrice {
   flex: 1;
-  background-color: #ebf3ff;
+  border: 1px solid lightgray;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -97,10 +97,9 @@
   font-weight: 300;
 }
 .hotelDetailsPrice > button {
-  border: none;
+  border: 1px solid #7c7877;
+  color: #7c7877;
   padding: 10px 20px;
-  background-color: #0071c2;
-  color: white;
   font-weight: bold;
   cursor: pointer;
   border-radius: 5px;
