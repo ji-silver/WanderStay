@@ -22,7 +22,7 @@ const connect = async () => {
 };
 
 mongoose.connection.on("disconnected", () => {
-  console.log("mongoDb disconnected!");
+  console.log("mongoDb가 연결되어 있지 않습니다!");
 });
 
 app.use(cors());
