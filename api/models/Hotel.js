@@ -1,12 +1,10 @@
 import mongoose from "mongoose";
 
 const HotelSchema = new mongoose.Schema({
-  // 호텔 이름 필수
   name: {
     type: String,
     required: true,
   },
-  // 호텔 종류
   type: {
     type: String,
     required: true,
@@ -35,12 +33,11 @@ const HotelSchema = new mongoose.Schema({
     required: true,
   },
   // 호텔 등급 (0~5등급)
-  rating: {
-    type: Number,
-    min: 0,
-    max: 5,
-  },
-  // 방 ID를 포함하기 때문에 배열
+  // rating: {
+  //   type: Number,
+  //   min: 0,
+  //   max: 5,
+  // },
   rooms: {
     type: [String],
   },
@@ -49,7 +46,6 @@ const HotelSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  // 반응형 앱에선 추천 호텔 보여줌
   featured: {
     type: Boolean,
     default: false,

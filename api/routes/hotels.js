@@ -7,11 +7,12 @@ import {
   getHotels,
   countByCity,
   countByType,
+  getHotelRooms,
 } from "../controllers/hotel.js";
 const router = express.Router();
 import { verifyAdmin } from "../utils/verifyToken.js";
 
-// controllers로 분리 -> 인증된 사용자만 CRUD 가능하게 하기위해
+// controllers로 분리 -> 관리자만 CRUD 가능하게 하기위해
 
 // CREATE
 router.post("/", verifyAdmin, createHotel);
@@ -29,5 +30,6 @@ router.get("/find/:id", getHotel);
 router.get("/", getHotels);
 router.get("/countByCity", countByCity);
 router.get("/countByType", countByType);
+router.get("/room/:id", getHotelRooms);
 
 export default router;

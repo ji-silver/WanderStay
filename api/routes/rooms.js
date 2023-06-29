@@ -5,6 +5,7 @@ import {
   deleteRoom,
   getRoom,
   getRooms,
+  updateRoomAvailability,
 } from "../controllers/room.js";
 import { verifyAdmin } from "../utils/verifyToken.js";
 const router = express.Router(); // 라우터 내보내기
@@ -13,6 +14,7 @@ const router = express.Router(); // 라우터 내보내기
 router.post("/:hotelid", verifyAdmin, createRoom);
 
 // UPDATE
+router.put("/availability/:id", updateRoomAvailability);
 router.put("/:id", verifyAdmin, updateRoom);
 
 // DELETE

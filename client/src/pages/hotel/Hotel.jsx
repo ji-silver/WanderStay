@@ -11,8 +11,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useState } from "react";
 import useFetch from "../../hooks/useFetch";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { SearchContext } from "../../context/SearchContext";
+import { AuthContext } from "../../context/AuthContext";
+import Reserve from "../../components/reserve/Reserve";
 
 const Hotel = () => {
   const location = useLocation();
@@ -20,8 +22,11 @@ const Hotel = () => {
   const id = location.pathname.split("/")[2];
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   const { data, loading, error } = useFetch(`/hotels/find/${id}`);
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const { dates, options } = useContext(SearchContext);
 
@@ -50,6 +55,15 @@ const Hotel = () => {
     }
 
     setSlideNumber(newSlideNumber);
+  };
+
+  // 회원일 때 예약 모달 띄우기
+  const handleClick = () => {
+    if (user) {
+      setOpenModal(true);
+    } else {
+      navigate("/login");
+    }
   };
 
   return (
@@ -87,7 +101,9 @@ const Hotel = () => {
             </div>
           )}
           <div className="hotelWrapper">
-            <button className="bookNow">지금 예약</button>
+            <button onClick={handleClick} className="bookNow">
+              지금 예약
+            </button>
             <h1 className="hotelTitle">{data.name}</h1>
             <div className="hotelAddress">
               <FontAwesomeIcon icon={faLocationDot} />
@@ -113,7 +129,7 @@ const Hotel = () => {
               </div>
               <div className="hotelDetailsPrice">
                 <h1>{days}박 투숙에 적합!</h1>
-                <span>평점 {data.rating} 으로 투숙객 후기를 참고하세요!</span>
+                <span>평점 {data.rating}점으로 투숙객 후기를 참고하세요!</span>
                 <h2>
                   <b>
                     ₩
@@ -126,13 +142,14 @@ const Hotel = () => {
                   </b>{" "}
                   ({days}박 기준)
                 </h2>
-                <button>지금 예약</button>
+                <button onClick={handleClick}>객실 선택</button>
               </div>
             </div>
           </div>
           <Footer />
         </div>
       )}
+      {openModal && <Reserve setOpen={setOpenModal} hotelId={id} />}
     </div>
   );
 };

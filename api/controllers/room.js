@@ -2,7 +2,7 @@ import Room from "../models/Room.js";
 import Hotel from "../models/Hotel.js";
 import { createError } from "../utils/error.js";
 
-// 방 추가
+// 객실 추가
 export const createRoom = async (req, res, next) => {
   const hotelId = req.params.hotelid; // URL 경로에서 추출된 라우트 매개변수(호텔 id) 추출
   const newRoom = req.body; // 요청 본문에 담은 방 정보 저장
@@ -25,7 +25,7 @@ export const createRoom = async (req, res, next) => {
   }
 };
 
-// 방 수정
+// 객실 수정
 export const updateRoom = async (req, res, next) => {
   try {
     const updatedRoom = await Room.findByIdAndUpdate(
@@ -39,6 +39,27 @@ export const updateRoom = async (req, res, next) => {
   }
 };
 
+// 객실 업데이트
+export const updateRoomAvailability = async (req, res, next) => {
+  try {
+    // roomNumbers_id와 매개변수 id가 같은 객실 찾아서 업데이트를 할건데
+    // $push연산자로 unavailableDates 배열에 전달받은 dates값 추가하기
+    // unavailableDates앞에 '$'는 배열을 수정할 때 쓰는 연산자
+    await Room.updateOne(
+      { "roomNumbers._id": req.params.id },
+      {
+        $push: {
+          "roomNumbers.$.unavailableDates": req.body.dates,
+        },
+      }
+    );
+    res.status(200).json("업데이트 되었습니다.");
+  } catch (err) {
+    next(err);
+  }
+};
+
+// 객실 삭제
 export const deleteRoom = async (req, res, next) => {
   // api/rooms/:id(room_id)/hotelid(hotel_id)
   const hotelId = req.params.hotelid;
@@ -57,7 +78,7 @@ export const deleteRoom = async (req, res, next) => {
   }
 };
 
-// 특정 방 불러오기
+// 특정 객실 불러오기
 export const getRoom = async (req, res, next) => {
   try {
     const room = await Room.findById(req.params.id);
@@ -67,7 +88,7 @@ export const getRoom = async (req, res, next) => {
   }
 };
 
-// 모든 방 불러오기
+// 모든 객실 불러오기
 export const getRooms = async (req, res, next) => {
   try {
     const rooms = await Room.find();

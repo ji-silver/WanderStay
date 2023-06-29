@@ -10,7 +10,6 @@ const RoomSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    // 최대 인원
     maxPeople: {
       type: Number,
       required: true,
@@ -20,7 +19,7 @@ const RoomSchema = new mongoose.Schema(
       default: false,
     },
     // 방번호와 예약할 수 없는 날짜를 포함한 배열, 속성 안에 객체가 있을 때 _id값 또 따로 자동 생성
-    roomNumbers: [{ number: Number, unavailableDates: [{ type: [Date] }] }],
+    roomNumbers: [{ number: Number, unavailableDates: { type: [Date] } }],
   },
   { timestamps: true } // 생성 일시, 업데이트 일시 저장
 );

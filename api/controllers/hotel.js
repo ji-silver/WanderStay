@@ -1,4 +1,5 @@
 import Hotel from "../models/Hotel.js";
+import Room from "../models/Room.js";
 
 /**
  * CRUD 비동기로 만들기 (db에서 받아오는데 시간이 걸림)
@@ -116,3 +117,18 @@ export const countByType = async (req, res, next) => {
     next(err);
   }
 };
+
+// 특정 호텔의 객실 배열로 불러오기
+export const getHotelRooms = async (req, res, next) => {
+  try {
+    // params에서 호텔 id를 받고 DB에서 해당 호텔 찾기
+    const hotel = await Hotel.findById(req.params.id)
+    // 해당 호텔 객실의 id를 찾고 객실 정보 목록을 list에 저장
+    const list = await Promise.all(hotel.rooms.map((room) => {
+      return Room.findById(room);
+    }))
+    res.status(200).json(list)
+  } catch(err) {
+    next(err)
+  }
+}

@@ -15,24 +15,28 @@ export const AuthContext = createContext(INITIAL_STATE);
 const AuthReducer = (state, action) => {
   // switch문으로 액션 타입에 따라 다른 동작 수행
   switch (action.type) {
+    // 로그인 시
     case "LOGIN_START":
       return {
         user: null,
         loading: true,
         error: null,
       };
+      // 로그인 성공 시
     case "LOGIN_SUCCESS":
       return {
         user: action.payload,
         loading: false,
         error: null,
       };
+      // 로그인 실패 시
     case "LOGIN_FAILURE":
       return {
         user: null,
         loading: false,
         error: action.payload,
       };
+      // 로그아웃
     case "LOGOUT":
       return {
         user: null,
