@@ -25,14 +25,11 @@
   font-weight: bold;
 }
 
-.fpCity {
-}
-
 .fpPrice {
   font-weight: 400;
 }
 
-.fpRating > button {
+.fpButton {
   background-color: #f0e5de;
   color: #7c7877;
   border: none;
@@ -45,8 +42,4 @@
   top: 0;
   right: 0;
   opacity: 0.9;
-}
-
-.fpRating > span {
-  font-size: 14px;
 }

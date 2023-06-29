@@ -1,13 +1,13 @@
-import "./list.css";
+import "./list.scss";
 import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
+import SearchItem from "../../components/searchItem/SearchItem";
+import useFetch from "../../hooks/useFetch";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import ko from "date-fns/locale/ko";
-import SearchItem from "../../components/searchItem/SearchItem";
-import useFetch from "../../hooks/useFetch";
 
 const List = () => {
   // Header 컴포넌트에서 페이지 이동 시 전달받은 state객체를 초기값으로 설정 (목적지, 날짜, options)

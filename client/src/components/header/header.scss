@@ -1,6 +1,5 @@
 .header {
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)),
-    url("../../../public/images/header.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url("../../../public/images/header.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -14,34 +13,34 @@
   width: 100%;
   max-width: 1080px;
   margin: 20px 0px 100px 0px;
-}
 
-.headerContainer.listMode {
-  margin: 20px 0px 0px 0px;
+  .listMode {
+    margin: 20px 0px 0px 0px;
+  }
 }
 
 .headerList {
   display: flex;
   gap: 40px;
   margin-bottom: 50px;
-}
 
-.headerListItem {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  width: 70px;
-}
+  div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    width: 70px;
 
-.headerListItem > * {
-  flex-grow: 1;
-}
+    & > * {
+      flex-grow: 1;
+    }
 
-.headerListItem.active {
-  border: 1px solid white;
-  padding: 10px;
-  border-radius: 20px;
+    &.active {
+      border: 1px solid white;
+      padding: 10px;
+      border-radius: 20px;
+    }
+  }
 }
 
 .headerDesc {
@@ -138,12 +137,12 @@
   background-color: transparent;
   transition: background-color 0.3s ease;
   color: #7c7877;
-}
 
-.optionCounterButton:hover {
-  background-color: #d9d4cf;
-}
+  &:hover {
+    background-color: #d9d4cf;
+  }
 
-.optionCounterButton:disabled {
-  cursor: not-allowed;
+  &:disabled {
+    cursor: not-allowed;
+  }
 }

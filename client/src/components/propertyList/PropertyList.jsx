@@ -1,4 +1,4 @@
-import "./propertyList.css";
+import "./propertyList.scss";
 import useFetch from "../../hooks/useFetch";
 
 const PropertyList = () => {
@@ -21,7 +21,7 @@ const PropertyList = () => {
           {data &&
             images.map((img, i) => (
               <div className="pListItem" key={i}>
-                <img src={img} alt="" className="pListImg" />
+                <img src={img} alt="" />
                 <div className="pListTitles">
                   {/* ? 옵션 연산자로 data[i]가 존재하지 않아도 오류 발생 x -> undefined 반환 */}
                   <h1>{data[i]?.type}</h1>

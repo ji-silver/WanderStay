@@ -15,6 +15,18 @@
   padding: 20px;
   position: relative;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+
+  button {
+    border: none;
+    padding: 10px 20px;
+    background-color: #d9d4cf;
+    color: #7c7877;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 20px;
+  }
 }
 
 .rClose {
@@ -64,16 +76,4 @@
 .room {
   display: flex;
   flex-direction: column;
-}
-
-.rButton {
-  border: none;
-  padding: 10px 20px;
-  background-color: #d9d4cf;
-  color: #7c7877;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 5px;
-  width: 100%;
-  margin-top: 20px;
 }

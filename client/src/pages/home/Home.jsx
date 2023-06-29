@@ -4,7 +4,7 @@ import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import Navbar from "../../components/navbar/Navbar";
 import PropertyList from "../../components/propertyList/PropertyList";
-import "./home.css";
+import "./home.scss";
 
 const Home = () => {
   return (
@@ -13,9 +13,9 @@ const Home = () => {
       <Header />
       <div className="homeContainer">
         <Featured />
-        <h1 className="homeTitle">숙소 유형</h1>
+        <h1>숙소 유형</h1>
         <PropertyList />
-        <h1 className="homeTitle">회원님을 위한 숙소 추천</h1>
+        <h1>회원님을 위한 숙소 추천</h1>
         <FeaturedProperties />
         <Footer />
       </div>

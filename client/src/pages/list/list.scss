@@ -31,6 +31,22 @@ input[type="number"] {
   position: sticky;
   top: 10px;
   height: max-content;
+
+  & > button {
+    border: 1px solid #7c7877;
+    border-radius: 5px;
+    padding: 10px;
+    color: #7c7877;
+    width: 100%;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #d9d4cf;
+    }
+  }
 }
 
 .lsTitle {
@@ -44,29 +60,30 @@ input[type="number"] {
   flex-direction: column;
   gap: 5px;
   margin-bottom: 10px;
-}
 
-.lsItem > label {
-  font-size: 12px;
-}
+  label {
+    font-size: 12px;
+  }
 
-.lsItem > input {
-  height: 30px;
-  border: none;
-  padding: 5px;
-  background-color: #d9d4cf;
-  border-radius: 5px;
-}
-.lsItem > span {
-  height: 30px;
-  padding: 5px;
-  background-color: #d9d4cf;
-  border-radius: 5px;
-  color: #7c7877;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+  & > input {
+    height: 30px;
+    border: none;
+    padding: 5px;
+    background-color: #d9d4cf;
+    border-radius: 5px;
+  }
+
+  & > span {
+    height: 30px;
+    padding: 5px;
+    background-color: #d9d4cf;
+    border-radius: 5px;
+    color: #7c7877;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
 }
 
 .lsOptions {
@@ -106,22 +123,6 @@ input[type="number"] {
 .price {
   width: 100%;
   padding-left: 5px;
-}
-
-.listSearch > button {
-  border: 1px solid #7c7877;
-  border-radius: 5px;
-  padding: 10px;
-  color: #7c7877;
-  width: 100%;
-  font-weight: 500;
-  cursor: pointer;
-  background-color: transparent;
-  transition: background-color 0.3s ease;
-}
-
-.listSearch > button:hover {
-  background-color: #d9d4cf;
 }
 
 .listResult {

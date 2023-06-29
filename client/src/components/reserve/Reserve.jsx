@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import "./reserve.css";
+import "./reserve.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import useFetch from "../../hooks/useFetch";
@@ -37,10 +37,12 @@ const Reserve = ({ setOpen, hotelId }) => {
 
   // 객실 예약 가능 여부 (해당 날짜가 예약되는지 안되는지)
   const isAvailable = (roomNumber) => {
+    // 받아온 roomNumber 객체에 unavailableDates(이미 예약된 날짜) 속성에 접근해서 some()메서드를 이용해 하나라도 true면 true 반환
+    // alldates 배열에 includes() 메서드 사용해서 unavailableDates배열에 포함 되어있는지 확인 -> 포함 되어있으면 예약 불가
     const isFound = roomNumber.unavailableDates.some((date) =>
       alldates.includes(new Date(date).getTime())
     );
-    // true면 예약 불가능
+    // isFound가 true(이미 예약이 된 날짜)면 예약이 불가능하기 때문에 false 반환, 포함 되지 않았다면 true 반환
     return !isFound;
   };
 
@@ -61,6 +63,7 @@ const Reserve = ({ setOpen, hotelId }) => {
 
   const handleClick = async () => {
     try {
+      // Promise.all은 모든 프로미스가 완료될 때 까지 대기 후 배열로 반환
       await Promise.all(
         selectedRooms.map((roomId) => {
           const res = axios.put(`/rooms/availability/${roomId}`, {
@@ -93,13 +96,16 @@ const Reserve = ({ setOpen, hotelId }) => {
               <div className="rMax">
                 최대 인원: <b>{item.maxPeople}</b>
               </div>
-              <div className="rPrice">{item.price}</div>
+              <div className="rPrice">
+                {parseInt(item.price).toLocaleString()}원
+              </div>
             </div>
             <div className="rSelectRooms">
               {/* roomNumbers 배열이니까 map으로 한 번 더 돌려서 객실번호, _id가 담긴 체크박스 뿌리기 */}
               {item.roomNumbers.map((roomNumber) => (
                 <div className="room">
                   <label>{roomNumber.number}</label>
+                  {/* disabled는 체크 박스 비활성화 시키키. 예약이 가능한 경우만 활성화 시키기 */}
                   <input
                     type="checkbox"
                     value={roomNumber._id}
@@ -111,9 +117,7 @@ const Reserve = ({ setOpen, hotelId }) => {
             </div>
           </div>
         ))}
-        <button onClick={handleClick} className="rButton">
-          지금 예약
-        </button>
+        <button onClick={handleClick}>지금 예약</button>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import useFetch from "../../hooks/useFetch";
-import "./featuredProperties.css";
+import "./featuredProperties.scss";
 
 const FeaturedProperties = () => {
   const { data, loading, error } = useFetch("/hotels?featured=true");
@@ -21,8 +21,8 @@ const FeaturedProperties = () => {
                 </strong>
               </span>
               {item.rating && (
-                <div className="fpRating">
-                  <button>{item.rating}</button>
+                <div>
+                  <button className="fpButton">{item.rating}</button>
                 </div>
               )}
             </div>

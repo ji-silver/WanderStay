@@ -8,7 +8,7 @@ import {
   faTrain,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./header.css";
+import "./header.scss";
 import { DateRange } from "react-date-range";
 import ko from "date-fns/locale/ko";
 import { useContext, useState } from "react";
@@ -65,19 +65,19 @@ const Header = ({ type }) => {
         }
       >
         <div className="headerList">
-          <div className="headerListItem active">
+          <div className="active">
             <FontAwesomeIcon icon={faBed} />
             <span>숙소</span>
           </div>
-          <div className="headerListItem">
+          <div>
             <FontAwesomeIcon icon={faPlane} />
             <span>항공권</span>
           </div>
-          <div className="headerListItem">
+          <div>
             <FontAwesomeIcon icon={faTrain} />
             <span>기차</span>
           </div>
-          <div className="headerListItem">
+          <div>
             <FontAwesomeIcon icon={faCar} />
             <span>렌터카</span>
           </div>

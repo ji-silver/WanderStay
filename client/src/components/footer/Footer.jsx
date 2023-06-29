@@ -1,9 +1,9 @@
-import "./footer.css";
+import "./footer.scss";
 
 const Footer = () => {
   return (
     <div className="footer">
-      <div className="fText">Copyright © 2023 WanderStay.</div>
+      <div>Copyright © 2023 WanderStay.</div>
     </div>
   );
 };
