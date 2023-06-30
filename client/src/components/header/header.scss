@@ -1,5 +1,12 @@
+$lightBlue-color: #c7dddc;
+$navyBlue-color: #55809a;
+$lightGreen-color: #108586;
+$blueGreen-color: #295568;
+$darkGreen-color: #08494a;
+$black-color: #1c1d22;
+
 .header {
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url("../../../public/images/header.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url("../../../public/images/header.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -52,8 +59,8 @@
   height: 100%;
   top: 0;
   right: 0;
-  color: #7c7877;
-  background-color: #d9d4cf;
+  color: white;
+  background-color: $navyBlue-color;
   font-weight: 500;
   border: none;
   position: absolute;
@@ -85,12 +92,12 @@
 
 .headerSearchInput {
   font-size: 16px;
-  color: #7c7877;
-  border-bottom: 1px solid #7c7877;
+  color: $navyBlue-color;
+  border-bottom: 1px solid $blueGreen-color;
 }
 
 .headerSearchText {
-  color: #7c7877;
+  color: $navyBlue-color;
   cursor: pointer;
 }
 
@@ -105,7 +112,7 @@
   position: absolute;
   top: 50px;
   background-color: white;
-  color: gray;
+  color: $black-color;
   border-radius: 5px;
   -webkit-box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
   box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
@@ -124,8 +131,8 @@
   align-items: center;
   gap: 10px;
   font-size: 12px;
-  color: #7c7877;
-  border: 1px solid #7c7877;
+  color: $navyBlue-color;
+  border: 1px solid $navyBlue-color;
   border-radius: 2px;
 }
 
@@ -136,10 +143,10 @@
   cursor: pointer;
   background-color: transparent;
   transition: background-color 0.3s ease;
-  color: #7c7877;
+  color: $navyBlue-color;
 
   &:hover {
-    background-color: #d9d4cf;
+    background-color: $lightBlue-color;
   }
 
   &:disabled {

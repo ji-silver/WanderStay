@@ -1,3 +1,10 @@
+$lightBlue-color: #c7dddc;
+$navyBlue-color: #55809a;
+$lightGreen-color: #108586;
+$blueGreen-color: #295568;
+$darkGreen-color: #08494a;
+$black-color: #1c1d22;
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -33,10 +40,10 @@ input[type="number"] {
   height: max-content;
 
   & > button {
-    border: 1px solid #7c7877;
+    border: 1px solid $navyBlue-color;
     border-radius: 5px;
     padding: 10px;
-    color: #7c7877;
+    color: $darkGreen-color;
     width: 100%;
     font-weight: 500;
     cursor: pointer;
@@ -44,14 +51,14 @@ input[type="number"] {
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: #d9d4cf;
+      background-color: $lightBlue-color;
     }
   }
 }
 
 .lsTitle {
   font-size: 20px;
-  color: #555;
+  color: $black-color;
   margin-bottom: 10px;
 }
 
@@ -68,17 +75,18 @@ input[type="number"] {
   & > input {
     height: 30px;
     border: none;
-    padding: 5px;
-    background-color: #d9d4cf;
+    padding: 5px 10px;
+    color: $darkGreen-color;
+    background-color: $lightBlue-color;
     border-radius: 5px;
   }
 
   & > span {
     height: 30px;
     padding: 5px;
-    background-color: #d9d4cf;
+    background-color: $lightBlue-color;
     border-radius: 5px;
-    color: #7c7877;
+    color: $darkGreen-color;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,13 +106,14 @@ input[type="number"] {
   color: #555;
   font-size: 12px;
 }
+
 .lsOptionInputWrap {
   display: flex;
   align-items: center;
   width: 94px;
   height: 28px;
   border-radius: 2px;
-  border: 1px solid #7c7877;
+  border: 1px solid $navyBlue-color;
   padding: 0 5px;
 }
 

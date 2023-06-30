@@ -26,7 +26,7 @@ export const register = async (req, res, next) => {
 export const login = async (req, res, next) => {
   try {
     // username 확인
-    const user = await User.findOne({ username: req.body.username });
+    const user = await User.findOne({ email: req.body.email });
     if (!user) return next(createError(404, "회원정보가 없습니다."));
 
     // bcrypt.compare() 함수로 요청된 비밀번호와 hash된 비밀번호 비교
@@ -35,7 +35,9 @@ export const login = async (req, res, next) => {
       user.password
     );
     if (!isPasswordCorrect)
-      return next(createError(400, "이름 혹은 비밀번호가 일치하지 않습니다."));
+      return next(
+        createError(400, "이메일 혹은 비밀번호가 일치하지 않습니다.")
+      );
 
     // jwt.sign()함수에 인자값으로 paylaod(데이터)와 발급받은 시크릿키 넣기(env)
     const token = jwt.sign(
@@ -49,7 +51,7 @@ export const login = async (req, res, next) => {
     res
       .cookie("access_token", token, { httpOnly: true })
       .status(200)
-      .json({ ...otherDetails });
+      .json({ details: { ...otherDetails }, isAdmin });
   } catch (err) {
     next(err);
   }

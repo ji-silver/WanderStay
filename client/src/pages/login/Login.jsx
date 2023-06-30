@@ -2,12 +2,12 @@ import { useContext, useState } from "react";
 import axios from "axios";
 import "./login.scss";
 import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   // 사용자 이름, 비밀번호 저장하기
   const [credentials, setCredentials] = useState({
-    username: undefined,
+    email: undefined,
     password: undefined,
   });
   const navigate = useNavigate();
@@ -42,10 +42,13 @@ const Login = () => {
   return (
     <div>
       <div className="lContainer">
+        <div className="lLogo">
+          <span>WanderStay</span>
+        </div>
         <input
           type="text"
-          placeholder="이름"
-          id="username"
+          placeholder="이메일"
+          id="email"
           onChange={handleChange}
         ></input>
         <input
@@ -57,7 +60,16 @@ const Login = () => {
         <button disabled={loading} onClick={handleClick}>
           로그인
         </button>
-        {error && <span>{error.message}</span>}
+        <p className="lError">{error && <span>{error.message}</span>}</p>
+        <p className="lDesc">
+          아직 계정이 없으신가요?
+          <Link
+            to="/register"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <span>회원가입</span>
+          </Link>
+        </p>
       </div>
     </div>
   );

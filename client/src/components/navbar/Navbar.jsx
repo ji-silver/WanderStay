@@ -13,7 +13,7 @@ const Navbar = () => {
 
   const handleClick = () => {
     dispatch({ type: "LOGOUT" });
-    navigate("/");
+    navigate("/login");
   };
 
   return (
@@ -39,7 +39,7 @@ const Navbar = () => {
                   >
                     <span>
                       <FontAwesomeIcon icon={faUser} className="navIcon" />
-                      회원 정보 수정
+                      계정 관리
                     </span>
                   </Link>
                 </li>
@@ -57,7 +57,9 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="navItems">
-            <button>회원가입</button>
+            <Link to="/register">
+              <button>회원가입</button>
+            </Link>
             <Link to="/login">
               <button>로그인</button>
             </Link>

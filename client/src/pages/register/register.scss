@@ -1,0 +1,73 @@
+$lightBlue-color: #c7dddc;
+$navyBlue-color: #55809a;
+$lightGreen-color: #108586;
+$blueGreen-color: #295568;
+$darkGreen-color: #08494a;
+$black-color: #1c1d22;
+
+.reContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    max-width: 360px;
+    gap: 10px;
+    justify-content: center;
+    margin: 0 auto;
+
+    input {
+        height: 30px;
+        padding: 10px;
+        border: 1px solid $black-color;
+        border-radius: 5px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: $navyBlue-color;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 5px;
+
+        &:disabled {
+            background-color: $lightBlue-color;
+            cursor: not-allowed;
+            color: $darkGreen-color;
+        }
+    }
+}
+
+.reLogo {
+    font-size: 24px;
+    width: 100%;
+    color: $navyBlue-color;
+
+    span {
+        font-weight: 500;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 10px;
+    }
+}
+
+.reError {
+    width: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: $blueGreen-color;
+}
+
+.reDesc {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+
+    span {
+        font-weight: 700;
+        padding-left: 10px;
+        color: $navyBlue-color;
+    }
+}

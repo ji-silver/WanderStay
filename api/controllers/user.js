@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import bcrypt from "bcryptjs";
 
 /**
  * CRUD 비동기로 만들기 (db에서 받아오는데 시간이 걸림)
@@ -12,11 +13,15 @@ import User from "../models/User.js";
  */
 export const updateUser = async (req, res, next) => {
   try {
-    // findByIdAndUpdate()는 mongoDB에서 id와 일치하는 것 찾기
+    const { password } = req.body;
+
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(password, salt);
+
     const updatedUser = await User.findByIdAndUpdate(
-      req.params.id, // URL 매개변수로 추출된 id
-      { $set: req.body }, // $set은 새로운값 할당, 변경 시 사용. 업데이트할 필드 지정
-      { new: true } // findByIdAndUpdate() 옵션 객체. 지정 안 하면 업데이트 이전 문서 반환.
+      req.params.id,
+      { $set: { ...req.body, password: hash } },
+      { new: true }
     );
     res.status(200).json(updatedUser);
   } catch (err) {
@@ -27,7 +32,7 @@ export const updateUser = async (req, res, next) => {
 export const deleteUser = async (req, res, next) => {
   try {
     await User.findOneAndDelete(req.params.id);
-    res.status(200).json("삭제되었습니다.");
+    res.status(200).json("탈퇴했습니다.");
   } catch (err) {
     next(err);
   }

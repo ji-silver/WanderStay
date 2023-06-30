@@ -1,3 +1,10 @@
+$lightBlue-color: #c7dddc;
+$navyBlue-color: #55809a;
+$lightGreen-color: #108586;
+$blueGreen-color: #295568;
+$darkGreen-color: #08494a;
+$black-color: #1c1d22;
+
 .hotelContainer {
   display: flex;
   flex-direction: column;
@@ -18,9 +25,9 @@
   position: absolute;
   top: 10px;
   right: 0;
-  border: 1px solid #7c7877;
+  border: 1px solid $navyBlue-color;
   padding: 10px 20px;
-  color: #7c7877;
+  color: $blueGreen-color;
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
@@ -28,7 +35,7 @@
 
 .hotelTitle {
   font-size: 24px;
-  color: #7c7877;
+  color: $navyBlue-color;
 }
 
 .hotelAddress {
@@ -87,7 +94,7 @@
 
   h1 {
     font-size: 18px;
-    color: #555;
+    color: $black-color;
   }
 
   span {
@@ -99,8 +106,8 @@
   }
 
   button {
-    border: 1px solid #7c7877;
-    color: #7c7877;
+    border: 1px solid $navyBlue-color;
+    color: $blueGreen-color;
     padding: 10px 20px;
     font-weight: bold;
     cursor: pointer;
