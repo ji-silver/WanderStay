@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { handlePhone } from "../../utils/CommonFunction";
+
 import "./register.scss";
 import axios from "axios";
 
@@ -7,6 +9,7 @@ const Register = () => {
   const [newUser, setNewUser] = useState({
     username: "",
     email: "",
+    phone: "",
     password: "",
   });
 
@@ -14,7 +17,11 @@ const Register = () => {
   const [serverErr, setserverErr] = useState("");
 
   const handleChange = (e) => {
-    setNewUser((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    let { id, value } = e.target;
+    if (id === "phone") {
+      value = handlePhone(value);
+    }
+    setNewUser((prev) => ({ ...prev, [id]: value }));
   };
 
   const navigate = useNavigate();
@@ -25,6 +32,7 @@ const Register = () => {
     if (
       newUser.username === "" ||
       newUser.email === "" ||
+      newUser.phone === "" ||
       newUser.password === ""
     ) {
       setErrorMessage("필드를 모두 입력해주세요.");
@@ -56,6 +64,13 @@ const Register = () => {
           type="text"
           placeholder="이메일"
           id="email"
+          onChange={handleChange}
+        ></input>
+        <input
+          type="text"
+          placeholder="휴대폰 번호"
+          id="phone"
+          value={newUser.phone}
           onChange={handleChange}
         ></input>
         <input

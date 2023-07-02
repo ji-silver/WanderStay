@@ -4,6 +4,7 @@ import useFetch from "../../hooks/useFetch";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { handlePhone } from "../../utils/CommonFunction";
 
 const MyPage = () => {
   const { user, dispatch } = useContext(AuthContext);
@@ -12,6 +13,7 @@ const MyPage = () => {
   const [updateUser, setUpdateUser] = useState({
     username: "",
     email: "",
+    phone: "",
     password: "",
   });
 
@@ -20,6 +22,7 @@ const MyPage = () => {
       setUpdateUser({
         username: data.username,
         email: data.email,
+        phone: data.phone,
         password: "",
       });
     }
@@ -28,16 +31,18 @@ const MyPage = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setUpdateUser((prev) => ({
-      ...prev,
-      [e.target.id]: e.target.value,
-    }));
+    let { id, value } = e.target;
+    if (id === "phone") {
+      value = handlePhone(value);
+    }
+    setUpdateUser((prev) => ({ ...prev, [id]: value }));
   };
 
   const handleClick = async () => {
     if (
       updateUser.username === "" ||
       updateUser.email === "" ||
+      updateUser.phone === "" ||
       updateUser.password === ""
     ) {
       setErrorMessage("필드를 모두 입력해주세요.");
@@ -75,6 +80,13 @@ const MyPage = () => {
               placeholder="이메일"
               id="email"
               value={updateUser.email}
+              onChange={handleChange}
+            ></input>
+            <input
+              type="text"
+              placeholder="휴대폰 번호"
+              id="phone"
+              value={updateUser.phone}
               onChange={handleChange}
             ></input>
             <input
