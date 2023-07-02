@@ -45,12 +45,13 @@ export const login = async (req, res, next) => {
       process.env.JWT
     );
 
-    // user에서 password, isAdmin을 추출하고 나머지 속성을 otherDetails객체에 포함시키기
+    // user에서 password, isAdmin을 제외하고 나머지 속성을 otherDetails객체에 포함시키기
     // cookie("쿠키 이름", 토큰, {httpOnly: true => 쿠키가 자바스크립트 접근 x})
     const { password, isAdmin, ...otherDetails } = user._doc;
     res
       .cookie("access_token", token, { httpOnly: true })
       .status(200)
+      // details 키에 ohterDetails와 isAdmin 값 할당 => 사용자 정보, 관리자 여부 확인
       .json({ details: { ...otherDetails }, isAdmin });
   } catch (err) {
     next(err);

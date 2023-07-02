@@ -11,6 +11,7 @@ const Register = () => {
   });
 
   const [errorMessage, setErrorMessage] = useState("");
+  const [serverErr, setserverErr] = useState("");
 
   const handleChange = (e) => {
     setNewUser((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -35,7 +36,7 @@ const Register = () => {
       alert("회원가입 되었습니다.");
       navigate("/login");
     } catch (err) {
-      console.log(err);
+      setserverErr("가입되어 있는 이름 또는 이메일입니다.");
     }
   };
 
@@ -64,7 +65,14 @@ const Register = () => {
           onChange={handleChange}
         ></input>
         <button onClick={handleClick}>회원가입</button>
-        <p className="reError">{errorMessage && <span>{errorMessage}</span>}</p>
+        <p className="reError">
+          {(errorMessage || serverErr) && (
+            <>
+              {errorMessage && <span>{errorMessage}</span>}
+              {serverErr && <span>{serverErr}</span>}
+            </>
+          )}
+        </p>
         <p className="lDesc">
           이미 계정이 있으신가요?
           <Link

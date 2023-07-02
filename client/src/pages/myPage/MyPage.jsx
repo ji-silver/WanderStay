@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import "./myPage.scss";
 import useFetch from "../../hooks/useFetch";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
@@ -54,12 +55,12 @@ const MyPage = () => {
 
   return (
     <div>
-      <div className="reContainer">
+      <div className="mContainer">
         {loading ? (
           "loading"
         ) : (
           <>
-            <div className="reLogo">
+            <div className="mLogo">
               <span>회원 정보 수정</span>
             </div>
             <input

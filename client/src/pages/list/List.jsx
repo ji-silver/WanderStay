@@ -176,16 +176,12 @@ const List = () => {
             <button onClick={handleClick}>검색</button>
           </div>
           <div className="listResult">
-            {loading ? (
-              "loading"
-            ) : (
-              <>
-                {data.map((item) => (
-                  // SearchItem 컴포넌트에 item prop 전달
-                  <SearchItem item={item} key={item._id} />
-                ))}
-              </>
-            )}
+            <>
+              {data.map((item) => (
+                // SearchItem 컴포넌트에 item prop 전달
+                <SearchItem item={item} key={item._id} />
+              ))}
+            </>
           </div>
         </div>
       </div>

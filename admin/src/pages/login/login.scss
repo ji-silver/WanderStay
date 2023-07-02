@@ -5,7 +5,7 @@ $blueGreen-color: #295568;
 $darkGreen-color: #08494a;
 $black-color: #1c1d22;
 
-.mContainer {
+.lContainer {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -38,7 +38,7 @@ $black-color: #1c1d22;
     }
 }
 
-.mLogo {
+.lLogo {
     font-size: 24px;
     width: 100%;
     color: $navyBlue-color;
@@ -51,7 +51,7 @@ $black-color: #1c1d22;
     }
 }
 
-.reError {
+.lError {
     width: 100%;
     width: 100%;
     display: flex;
@@ -59,7 +59,7 @@ $black-color: #1c1d22;
     color: $blueGreen-color;
 }
 
-.reDesc {
+.lDesc {
     width: 100%;
     display: flex;
     justify-content: center;
