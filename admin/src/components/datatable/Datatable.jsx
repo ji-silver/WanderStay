@@ -1,14 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { userColumns } from "../../datatablesource";
 import "./datatable.scss";
+import axios from "axios";
 
 const Datatable = () => {
-  const { data, loading, error } = useFetch("/users");
+  const location = useLocation();
+  const path = location.pathname.split("/")[1];
+  const [list, setList] = useState([]);
+  const { data, loading, error } = useFetch(`/${path}`);
 
-  const handleDelete = () => {};
+  useEffect(() => {
+    setList(data);
+  }, [data]);
+
+  const handleDelete = async (id) => {
+    console.log(id);
+    try {
+      await axios.delete(`/${path}/${id}`);
+      setList((prevList) => prevList.filter((item) => item._id !== id));
+    } catch (err) {
+      // 에러 처리 로직 추가
+    }
+  };
 
   const actionColumn = [
     {
@@ -43,7 +59,7 @@ const Datatable = () => {
       </div>
       <DataGrid
         className="datagrid"
-        rows={data}
+        rows={list}
         columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}

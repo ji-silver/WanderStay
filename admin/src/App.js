@@ -30,9 +30,16 @@ function App() {
                 </ProtectedRoute>
               }
             />
-          </Route>
-          <Route path="users">
-            <Route index element={<List />}></Route>
+            <Route path="users">
+              <Route
+                index
+                element={
+                  <ProtectedRoute>
+                    <List />
+                  </ProtectedRoute>
+                }
+              ></Route>
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>
