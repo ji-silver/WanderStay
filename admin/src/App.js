@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
+import List from "./pages/list/List";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 
@@ -29,6 +30,9 @@ function App() {
                 </ProtectedRoute>
               }
             />
+          </Route>
+          <Route path="users">
+            <Route index element={<List />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
