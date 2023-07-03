@@ -11,8 +11,7 @@ export const register = async (req, res, next) => {
     const hash = bcrypt.hashSync(req.body.password, salt);
 
     const newUser = await User.create({
-      username: req.body.username,
-      email: req.body.email,
+      ...req.body,
       password: hash,
     });
 
@@ -25,7 +24,6 @@ export const register = async (req, res, next) => {
 // 로그인
 export const login = async (req, res, next) => {
   try {
-    // username 확인
     const user = await User.findOne({ email: req.body.email });
     if (!user) return next(createError(404, "회원정보가 없습니다."));
 

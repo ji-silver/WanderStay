@@ -29,10 +29,11 @@ export const updateUser = async (req, res, next) => {
   }
 };
 
+//req.params.id를 그대로 전달하면 못찾아서 _id 사용
 export const deleteUser = async (req, res, next) => {
   try {
-    await User.findOneAndDelete(req.params.id);
-    res.status(200).json("탈퇴했습니다.");
+    await User.findOneAndDelete({ _id: req.params.id });
+    res.status(200).json("삭제되었습니다.");
   } catch (err) {
     next(err);
   }
