@@ -72,7 +72,7 @@ export const getHotels = async (req, res, next) => {
         $gte: parseInt(min) || 1,
         $lte: parseInt(max) || 1000000,
       },
-    }).limit(parseInt(req.query.limit || 4)); // limit()는 개수 제한 (입력순 반환)
+    });
     res.status(200).json(hotels);
   } catch (err) {
     next(err);
@@ -122,13 +122,15 @@ export const countByType = async (req, res, next) => {
 export const getHotelRooms = async (req, res, next) => {
   try {
     // params에서 호텔 id를 받고 DB에서 해당 호텔 찾기
-    const hotel = await Hotel.findById(req.params.id)
+    const hotel = await Hotel.findById(req.params.id);
     // 해당 호텔 객실의 id를 찾고 객실 정보 목록을 list에 저장
-    const list = await Promise.all(hotel.rooms.map((room) => {
-      return Room.findById(room);
-    }))
-    res.status(200).json(list)
-  } catch(err) {
-    next(err)
+    const list = await Promise.all(
+      hotel.rooms.map((room) => {
+        return Room.findById(room);
+      })
+    );
+    res.status(200).json(list);
+  } catch (err) {
+    next(err);
   }
-}
+};
