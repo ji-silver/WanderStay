@@ -4,7 +4,7 @@ import Login from "./pages/login/Login";
 import List from "./pages/list/List";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
-import { userColumns } from "./datatablesource";
+import { hotelColumns, roomColumns, userColumns } from "./datatablesource";
 
 function App() {
   // 사용자 인증이 된 경우에만 자식 컴포넌트 렌더링, 아니면 로그인 페이지 리다이렉션
@@ -37,6 +37,26 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <List columns={userColumns} />
+                  </ProtectedRoute>
+                }
+              ></Route>
+            </Route>
+            <Route path="hotels">
+              <Route
+                index
+                element={
+                  <ProtectedRoute>
+                    <List columns={hotelColumns} />
+                  </ProtectedRoute>
+                }
+              ></Route>
+            </Route>
+            <Route path="rooms">
+              <Route
+                index
+                element={
+                  <ProtectedRoute>
+                    <List columns={roomColumns} />
                   </ProtectedRoute>
                 }
               ></Route>

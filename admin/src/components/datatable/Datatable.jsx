@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link, useLocation } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import { userColumns } from "../../datatablesource";
 import "./datatable.scss";
 import axios from "axios";
 
-const Datatable = () => {
+const Datatable = ({ columns }) => {
+  // 회원, 숙소, 객실 데이터 다르게 받아오기 위해서 path 설정
+  const location = useLocation();
+  const path = location.pathname.split("/")[1];
   const [list, setList] = useState([]);
-  const { data, loading, error } = useFetch("/users");
+  const { data, loading, error } = useFetch(`/${path}`);
 
   useEffect(() => {
     setList(data);
@@ -18,7 +20,7 @@ const Datatable = () => {
   // 해당 id 삭제 후 list배열에 없는 id 필터링
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/users/${id}`);
+      await axios.delete(`/${path}/${id}`);
       setList(list.filter((item) => item._id !== id));
     } catch (err) {}
   };
@@ -57,7 +59,7 @@ const Datatable = () => {
       <DataGrid
         className="datagrid"
         rows={list}
-        columns={userColumns.concat(actionColumn)}
+        columns={columns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection
