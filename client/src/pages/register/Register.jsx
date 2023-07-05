@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { handlePhone } from "../../utils/CommonFunction";
+import {
+  handlePhone,
+  validateEmail,
+  validatePassword,
+} from "../../utils/CommonFunction";
 
 import "./register.scss";
 import axios from "axios";
@@ -36,6 +40,16 @@ const Register = () => {
       newUser.password === ""
     ) {
       setErrorMessage("필드를 모두 입력해주세요.");
+      return;
+    }
+
+    if (!validateEmail(newUser.email)) {
+      setErrorMessage("유효한 이메일 주소를 입력해주세요.");
+      return;
+    }
+
+    if (!validatePassword(newUser.password)) {
+      setErrorMessage("비밀번호는 8자리 이상 영문자, 숫자를 포함해야 합니다.");
       return;
     }
 
@@ -75,7 +89,7 @@ const Register = () => {
         ></input>
         <input
           type="password"
-          placeholder="비밀번호"
+          placeholder="비밀번호 8자 이상 영문, 숫자 조합"
           id="password"
           onChange={handleChange}
         ></input>

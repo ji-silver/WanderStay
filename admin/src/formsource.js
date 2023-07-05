@@ -15,12 +15,13 @@ export const userInputs = [
     id: "phone",
     label: "휴대폰 번호",
     type: "text",
-    placeholder: "010-1234-5678",
+    placeholder: "숫자만 입력",
   },
   {
     id: "password",
     label: "비밀번호",
     type: "password",
+    placeholder: "비밀번호 8자 이상 영문, 숫자 조합",
   },
 ];
 
