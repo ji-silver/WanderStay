@@ -6,7 +6,7 @@
 
 // 회원 테이블
 export const userColumns = [
-  { field: "id", headerName: "ID", width: 90 },
+  { field: "_id", headerName: "ID", width: 250 },
   {
     field: "username",
     headerName: "이름",
@@ -26,7 +26,7 @@ export const userColumns = [
 
 // 숙소 테이블
 export const hotelColumns = [
-  { field: "id", headerName: "ID", width: 90 },
+  { field: "_id", headerName: "ID", width: 250 },
   {
     field: "name",
     headerName: "숙소 명",
@@ -35,7 +35,7 @@ export const hotelColumns = [
   {
     field: "type",
     headerName: "타입",
-    width: 230,
+    width: 100,
   },
   {
     field: "city",
@@ -46,21 +46,21 @@ export const hotelColumns = [
 
 // 객실 테이블
 export const roomColumns = [
-  { field: "id", headerName: "ID", width: 90 },
+  { field: "_id", headerName: "ID", width: 250 },
   {
     field: "title",
     headerName: "객실 명",
-    width: 230,
+    width: 250,
   },
   {
     field: "desc",
-    headerName: "설명",
+    headerName: "구성",
     width: 230,
   },
   {
     field: "price",
     headerName: "가격",
-    width: 230,
+    width: 100,
   },
   {
     field: "maxPeople",

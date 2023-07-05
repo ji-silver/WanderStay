@@ -1,6 +1,7 @@
-import React from "react";
+import { useContext } from "react";
 import "./sidebar.scss";
-import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import { Link, useNavigate } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import HomeIcon from "@mui/icons-material/Home";
@@ -8,6 +9,17 @@ import HotelIcon from "@mui/icons-material/Hotel";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 const Sidebar = () => {
+  const { dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleClick = () => {
+    const confirmed = window.confirm("로그아웃 하시겠습니까?");
+
+    if (confirmed) {
+      dispatch({ type: "LOGOUT" });
+      navigate("/");
+    }
+  };
+
   return (
     <div className="sidebar">
       <div className="top">
@@ -42,7 +54,7 @@ const Sidebar = () => {
               <span>객실관리</span>
             </li>
           </Link>
-          <li>
+          <li onClick={handleClick}>
             <LogoutIcon className="icon" />
             <span>로그아웃</span>
           </li>

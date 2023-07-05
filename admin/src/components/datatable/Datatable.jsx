@@ -10,7 +10,7 @@ const Datatable = ({ columns }) => {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
   const [list, setList] = useState([]);
-  const { data, loading, error } = useFetch(`/${path}`);
+  const { data } = useFetch(`/${path}`);
 
   useEffect(() => {
     setList(data);
@@ -52,7 +52,7 @@ const Datatable = ({ columns }) => {
     <div className="datatable">
       <div className="datatableTitle">
         회원정보
-        <Link to="/users/new" className="link">
+        <Link to={`/${path}/new`} className="link">
           추가하기
         </Link>
       </div>

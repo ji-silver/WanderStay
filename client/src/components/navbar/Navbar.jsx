@@ -12,8 +12,12 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    dispatch({ type: "LOGOUT" });
-    navigate("/login");
+    const confirmed = window.confirm("로그아웃 하시겠습니까?");
+
+    if (confirmed) {
+      dispatch({ type: "LOGOUT" });
+      navigate("/login");
+    }
   };
 
   return (
