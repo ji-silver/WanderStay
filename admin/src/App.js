@@ -8,6 +8,8 @@ import { AuthContext } from "./context/AuthContext";
 // 상위 컴포넌트에서 하위 컴포넌트로 데이터 내려주기
 import { hotelColumns, roomColumns, userColumns } from "./datatablesource";
 import { userInputs, hotelInputs, roomInputs } from "./formsource";
+import NewHotel from "./pages/newHotel/NewHotel";
+import NewRoom from "./pages/newRoom/NewRoom";
 
 function App() {
   // 사용자 인증이 된 경우에만 자식 컴포넌트 렌더링, 아니면 로그인 페이지 리다이렉션
@@ -47,7 +49,7 @@ function App() {
                 path="new"
                 element={
                   <ProtectedRoute>
-                    <New inputs={userInputs} title="회원 추가하기" />
+                    <New />
                   </ProtectedRoute>
                 }
               />
@@ -61,6 +63,14 @@ function App() {
                   </ProtectedRoute>
                 }
               ></Route>
+              <Route
+                path="new"
+                element={
+                  <ProtectedRoute>
+                    <NewHotel />
+                  </ProtectedRoute>
+                }
+              />
             </Route>
             <Route path="rooms">
               <Route
@@ -71,6 +81,14 @@ function App() {
                   </ProtectedRoute>
                 }
               ></Route>
+              <Route
+                path="new"
+                element={
+                  <ProtectedRoute>
+                    <NewRoom />
+                  </ProtectedRoute>
+                }
+              />
             </Route>
           </Route>
         </Routes>

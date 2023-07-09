@@ -8,6 +8,8 @@ const UserSchema = new mongoose.Schema(
     },
     img: {
       type: String,
+      default:
+        "https://icons.iconarchive.com/icons/graphicloads/flat-finance/256/person-icon.png",
     },
     email: {
       type: String,

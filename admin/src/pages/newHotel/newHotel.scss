@@ -1,0 +1,141 @@
+$lightBlue-color: #c7dddc;
+$navyBlue-color: #55809a;
+$lightGreen-color: #108586;
+$blueGreen-color: #295568;
+$darkGreen-color: #08494a;
+$black-color: #1c1d22;
+
+.new {
+    width: 100%;
+    display: flex;
+
+    .newContainer {
+        flex: 6;
+        padding: 0 30px;
+    }
+
+    h1 {
+        font-size: 20px;
+        color: rgb(121, 121, 121);
+    }
+
+    .left {
+        img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+    }
+
+    .right {
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+
+            .formImageInput {
+                width: 150px;
+            }
+
+            .selectRooms {
+                width: 100%;
+                select {
+                    width: 40%;
+                    padding: 10px;
+                }
+            }
+
+            .formInput {
+                width: 40%;
+            }
+
+            .imageBtn {
+                width: 150px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5px;
+                padding: 10px;
+                cursor: pointer;
+                box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+
+                .icon {
+                    padding-right: 5px;
+                }
+            }
+
+            label {
+                font-size: 14px;
+                color: rgb(159, 159, 159);
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 5px;
+            }
+
+            input {
+                width: 100%;
+                border-bottom: 1px solid rgb(224, 224, 224);
+                font-size: 16px;
+            }
+
+            button {
+                width: 150px;
+                background-color: $navyBlue-color;
+                border-radius: 5px;
+                color: white;
+                cursor: pointer;
+                margin-top: 10px;
+                padding: 15px;
+                box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+            }
+
+            span {
+                color: $navyBlue-color;
+            }
+        }
+    }
+
+    .toggleInput[type="checkbox"] {
+        height: 0;
+        width: 0;
+        visibility: hidden;
+    }
+
+    .togglLabel {
+        cursor: pointer;
+        text-indent: -9999px;
+        width: 60px;
+        height: 30px;
+        background: gray;
+        display: block;
+        border-radius: 100px;
+        position: relative;
+
+        &:after {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.3s;
+        }
+    }
+    .toggleInput:checked + .togglLabel {
+        background: $navyBlue-color;
+    }
+
+    .toggleInput:checked + .togglLabel:after {
+        left: calc(100% - 5px);
+        transform: translateX(-100%);
+    }
+
+    .toggleInput:active:after {
+        width: 130px;
+    }
+}

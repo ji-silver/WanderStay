@@ -8,8 +8,9 @@ import {
 } from "../../utils/CommonFunction";
 import axios from "axios";
 import "./new.scss";
+import { userInputs } from "../../formsource";
 
-const New = ({ inputs, title }) => {
+const New = () => {
   const [file, setFile] = useState("");
   const [info, setInfo] = useState({
     username: "",
@@ -91,7 +92,7 @@ const New = ({ inputs, title }) => {
       <Sidebar />
       <div className="newContainer">
         <div>
-          <h1>{title}</h1>
+          <h1>회원 추가하기</h1>
         </div>
         <div className="bottom">
           <div className="left">
@@ -99,7 +100,7 @@ const New = ({ inputs, title }) => {
               src={
                 file
                   ? URL.createObjectURL(file)
-                  : "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
+                  : "https://cdn.pixabay.com/photo/2017/01/25/17/35/picture-2008484_1280.png"
               }
               alt=""
             />
@@ -120,9 +121,9 @@ const New = ({ inputs, title }) => {
                   style={{ display: "none" }}
                 />
               </div>
-              {inputs.map((input) => {
+              {userInputs.map((input) => {
                 return (
-                  <div className="formInput" key={inputs.id}>
+                  <div className="formInput" key={input.id}>
                     <label>{input.label}</label>
                     <input
                       onChange={handleChange}

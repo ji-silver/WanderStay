@@ -30,11 +30,20 @@ export const hotelInputs = [
     id: "name",
     label: "숙소 명",
     type: "text",
-    placeholder: "숙소 명",
   },
   {
     id: "type",
-    label: "설명",
+    label: "타입",
+    type: "text",
+  },
+  {
+    id: "city",
+    label: "지역",
+    type: "text",
+  },
+  {
+    id: "address",
+    label: "주소",
     type: "text",
   },
   {
@@ -45,12 +54,7 @@ export const hotelInputs = [
   },
   {
     id: "distance",
-    label: "거리",
-    type: "text",
-  },
-  {
-    id: "title",
-    label: "숙소 설명",
+    label: "거리 설명",
     type: "text",
   },
   {

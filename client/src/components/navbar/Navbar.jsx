@@ -32,7 +32,8 @@ const Navbar = () => {
               onClick={() => setOpenModal(!openModal)}
               className="navUserButton"
             >
-              {user.username.charAt(0)}
+              {/* {user.username.charAt(0)} */}
+              <img className="cellImg" src={user.img} alt="avatar" />
             </button>
             {openModal && (
               <ul className="userUl">

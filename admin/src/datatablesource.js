@@ -8,9 +8,17 @@
 export const userColumns = [
   { field: "_id", headerName: "ID", width: 250 },
   {
-    field: "username",
+    field: "img",
     headerName: "이름",
-    width: 230,
+    width: 150,
+    renderCell: (params) => {
+      return (
+        <div className="cellWithImg">
+          <img className="cellImg" src={params.row.img} alt="avatar" />
+          {params.row.username}
+        </div>
+      );
+    },
   },
   {
     field: "email",
