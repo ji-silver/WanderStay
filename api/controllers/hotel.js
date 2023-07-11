@@ -37,9 +37,10 @@ export const updateHotel = async (req, res, next) => {
 };
 
 // 호텔 삭제
+//req.params.id를 그대로 전달하면 못찾아서 _id 사용
 export const deleteHotel = async (req, res, next) => {
   try {
-    await Hotel.findOneAndDelete(req.params.id); // id와 일치하는 호텔 삭제
+    await Hotel.findOneAndDelete({ _id: req.params.id });
     res.status(200).json("삭제되었습니다.");
   } catch (err) {
     next(err);

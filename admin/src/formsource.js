@@ -47,12 +47,6 @@ export const hotelInputs = [
     type: "text",
   },
   {
-    id: "price",
-    label: "가격",
-    type: "text",
-    placeholder: "100000",
-  },
-  {
     id: "distance",
     label: "거리 설명",
     type: "text",

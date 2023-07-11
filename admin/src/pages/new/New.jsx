@@ -9,6 +9,7 @@ import {
 import axios from "axios";
 import "./new.scss";
 import { userInputs } from "../../formsource";
+import { useNavigate } from "react-router-dom";
 
 const New = () => {
   const [file, setFile] = useState("");
@@ -19,6 +20,7 @@ const New = () => {
     password: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   // 필드에 입력 시 info 상태 업데이트, id가 키 - value가 값
   const handleChange = (e) => {
@@ -51,6 +53,7 @@ const New = () => {
   // 이미지 url을 받아오면 db에 저장 (없으면 저장 x)
   const handleClick = async (e) => {
     e.preventDefault();
+
     let newUser = { ...info };
     if (file) {
       const imageUrl = await handleImageUpload(file);
@@ -82,6 +85,7 @@ const New = () => {
     try {
       await axios.post("/auth/register", newUser);
       alert("회원을 추가하였습니다.");
+      navigate("/users");
     } catch (error) {
       console.log(error);
     }

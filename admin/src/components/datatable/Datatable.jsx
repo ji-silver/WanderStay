@@ -14,15 +14,20 @@ const Datatable = ({ columns }) => {
 
   useEffect(() => {
     setList(data);
+    console.log(data);
   }, [data]);
 
-  // 회원 삭제하기
   // 해당 id 삭제 후 list배열에 없는 id 필터링
   const handleDelete = async (id) => {
-    try {
-      await axios.delete(`/${path}/${id}`);
-      setList(list.filter((item) => item._id !== id));
-    } catch (err) {}
+    const confirmed = window.confirm("삭제 하시겠습니까?");
+    if (confirmed) {
+      try {
+        await axios.delete(`/${path}/${id}`);
+        setList((prevList) => prevList.filter((item) => item._id !== id));
+      } catch (err) {
+        console.log(err);
+      }
+    }
   };
 
   const actionColumn = [

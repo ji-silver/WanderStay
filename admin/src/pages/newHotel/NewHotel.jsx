@@ -5,9 +5,11 @@ import "./newHotel.scss";
 import { hotelInputs } from "../../formsource";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const NewHotel = () => {
   const { data } = useFetch("/rooms");
+  const navigate = useNavigate();
   const [files, setFiles] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -17,7 +19,6 @@ const NewHotel = () => {
     type: "",
     city: "",
     address: "",
-    price: "",
     distance: "",
     title: "",
     desc: "",
@@ -55,7 +56,6 @@ const NewHotel = () => {
             "https://api.cloudinary.com/v1_1/jisilver/image/upload",
             data
           );
-
           const { url } = uploadRes.data;
           return url;
         })
@@ -79,7 +79,6 @@ const NewHotel = () => {
     if (
       info.name === "" ||
       info.type === "" ||
-      info.price === "" ||
       info.distance === "" ||
       info.title === "" ||
       info.desc === "" ||
@@ -91,6 +90,8 @@ const NewHotel = () => {
 
     try {
       await axios.post("/hotels", newHotel);
+      alert("숙소를 추가하였습니다.");
+      navigate("/hotels");
     } catch (error) {
       console.log(error);
     }
