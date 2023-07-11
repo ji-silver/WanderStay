@@ -50,6 +50,11 @@ export const hotelColumns = [
     headerName: "지역",
     width: 100,
   },
+  {
+    field: "cheapestPrice",
+    headerName: "최저가",
+    width: 100,
+  },
 ];
 
 // 객실 테이블

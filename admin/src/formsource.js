@@ -32,11 +32,6 @@ export const hotelInputs = [
     type: "text",
   },
   {
-    id: "type",
-    label: "타입",
-    type: "text",
-  },
-  {
     id: "city",
     label: "지역",
     type: "text",
@@ -74,7 +69,6 @@ export const roomInputs = [
     id: "title",
     label: "객실 명",
     type: "text",
-    placeholder: "객실 명",
   },
   {
     id: "desc",
@@ -85,6 +79,7 @@ export const roomInputs = [
     id: "maxPeople",
     label: "최대 인원",
     type: "text",
+    placeholder: "2",
   },
   {
     id: "price",

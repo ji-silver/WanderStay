@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
 import ImageIcon from "@mui/icons-material/Image";
 import "./newHotel.scss";
@@ -16,7 +16,7 @@ const NewHotel = () => {
   const [rooms, setRooms] = useState([]);
   const [info, setInfo] = useState({
     name: "",
-    type: "",
+    type: "호텔",
     city: "",
     address: "",
     distance: "",
@@ -60,6 +60,7 @@ const NewHotel = () => {
           return url;
         })
       );
+      return list;
     } catch (error) {
       console.log(error);
       return null;
@@ -146,6 +147,16 @@ const NewHotel = () => {
                   </div>
                 );
               })}
+              <div className="formInput">
+                <label>숙소 타입</label>
+                <select id="type" onChange={handleChange}>
+                  <option value="호텔">호텔</option>
+                  <option value="모텔">모텔</option>
+                  <option value="리조트">리조트</option>
+                  <option value="펜션">펜션</option>
+                  <option value="글램핑">글램핑</option>
+                </select>
+              </div>
               <div className="formInput">
                 <label>숙소 추천 여부</label>
                 <input
