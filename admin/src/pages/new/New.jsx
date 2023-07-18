@@ -98,51 +98,49 @@ const New = () => {
         <div>
           <h1>회원 추가하기</h1>
         </div>
-        <div className="bottom">
-          <div className="left">
-            <img
-              src={
-                file
-                  ? URL.createObjectURL(file)
-                  : "https://cdn.pixabay.com/photo/2017/01/25/17/35/picture-2008484_1280.png"
-              }
-              alt=""
-            />
-          </div>
-          <div className="right">
-            <form>
-              <div className="formImageInput">
-                <label htmlFor="file">
-                  <div className="imageBtn">
-                    <ImageIcon className="icon" />
-                    이미지 업로드
-                  </div>
-                </label>
-                <input
-                  type="file"
-                  id="file"
-                  onChange={(e) => setFile(e.target.files[0])}
-                  style={{ display: "none" }}
-                />
-              </div>
-              {userInputs.map((input) => {
-                return (
-                  <div className="formInput" key={input.id}>
-                    <label>{input.label}</label>
-                    <input
-                      onChange={handleChange}
-                      type={input.type}
-                      placeholder={input.placeholder}
-                      id={input.id}
-                      value={info[input.id]}
-                    />
-                  </div>
-                );
-              })}
-              {errorMessage && <span>{errorMessage}</span>}
-              <button onClick={handleClick}>저장</button>
-            </form>
-          </div>
+        <div className="left">
+          <img
+            src={
+              file
+                ? URL.createObjectURL(file)
+                : "https://cdn.pixabay.com/photo/2017/01/25/17/35/picture-2008484_1280.png"
+            }
+            alt=""
+          />
+        </div>
+        <div className="right">
+          <form>
+            <div className="formImageInput">
+              <label htmlFor="file">
+                <div className="imageBtn">
+                  <ImageIcon className="icon" />
+                  이미지 업로드
+                </div>
+              </label>
+              <input
+                type="file"
+                id="file"
+                onChange={(e) => setFile(e.target.files[0])}
+                style={{ display: "none" }}
+              />
+            </div>
+            {userInputs.map((input) => {
+              return (
+                <div className="formInput" key={input.id}>
+                  <label>{input.label}</label>
+                  <input
+                    onChange={handleChange}
+                    type={input.type}
+                    placeholder={input.placeholder}
+                    id={input.id}
+                    value={info[input.id]}
+                  />
+                </div>
+              );
+            })}
+            {errorMessage && <span>{errorMessage}</span>}
+            <button onClick={handleClick}>저장</button>
+          </form>
         </div>
       </div>
     </div>

@@ -24,7 +24,7 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="top">
         <span className="adminTitle">관리자 페이지</span>
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/users" style={{ textDecoration: "none" }}>
           <span className="logo">WanderStay</span>
         </Link>
       </div>
@@ -32,10 +32,6 @@ const Sidebar = () => {
       <div className="center">
         <ul>
           <p className="title">사이트 관리</p>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>대시보드</span>
-          </li>
           <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
               <PersonIcon className="icon" />

@@ -34,7 +34,7 @@ const Login = () => {
       // 로그인 실패 시 액션 디스페이 후 에러 메시지를 payload에 전달
       if (res.data.isAdmin) {
         dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
-        navigate("/");
+        navigate("/users");
       } else {
         dispatch({
           type: "LOGIN_FAILURE",

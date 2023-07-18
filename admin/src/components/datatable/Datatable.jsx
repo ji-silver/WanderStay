@@ -14,7 +14,6 @@ const Datatable = ({ columns }) => {
 
   useEffect(() => {
     setList(data);
-    console.log(data);
   }, [data]);
 
   // 해당 id 삭제 후 list배열에 없는 id 필터링
@@ -38,9 +37,15 @@ const Datatable = ({ columns }) => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">수정</div>
-            </Link>
+            {path !== "users" && (
+              <Link
+                to={`/${path}/info`}
+                state={{ params: { id: params.row._id } }}
+                style={{ textDecoration: "none" }}
+              >
+                <div className="viewButton">수정</div>
+              </Link>
+            )}
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row._id)}
