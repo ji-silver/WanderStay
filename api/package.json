@@ -5,9 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon app.js",
-    "dev": "parcel index.html",
-    "build": "parcel build index.html"
+    "start": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
