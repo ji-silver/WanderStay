@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./myPage.scss";
 import useFetch from "../../hooks/useFetch";
 import { AuthContext } from "../../context/AuthContext";
@@ -8,7 +8,7 @@ import { handlePhone } from "../../utils/CommonFunction";
 
 const MyPage = () => {
   const { user, dispatch } = useContext(AuthContext);
-  const { data, loading, error } = useFetch(`/users/${user._id}`);
+  const { data, loading } = useFetch(`/users/${user._id}`);
   const [errorMessage, setErrorMessage] = useState("");
   const [updateUser, setUpdateUser] = useState({
     username: "",

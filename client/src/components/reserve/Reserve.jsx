@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const Reserve = ({ setOpen, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
-  const { data, loading, error } = useFetch(`/hotels/room/${hotelId}`);
+  const { data } = useFetch(`/hotels/room/${hotelId}`);
   // 시작일, 종료일 배열 가져오기
   const { dates } = useContext(SearchContext);
 
