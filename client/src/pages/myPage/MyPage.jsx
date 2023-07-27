@@ -49,7 +49,7 @@ const MyPage = () => {
       return;
     }
     try {
-      const res = await axios.put(`/users/${user._id}`, updateUser);
+      await axios.put(`/users/${user._id}`, updateUser);
       alert("수정되었습니다.");
       dispatch({ type: "UPDATE_USER", payload: updateUser });
       navigate("/");

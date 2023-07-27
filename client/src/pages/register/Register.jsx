@@ -54,7 +54,7 @@ const Register = () => {
     }
 
     try {
-      const res = await axios.post("/auth/register", newUser);
+      await axios.post("/auth/register", newUser);
       alert("회원가입 되었습니다.");
       navigate("/login");
     } catch (err) {
