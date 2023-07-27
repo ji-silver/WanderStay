@@ -1,14 +1,12 @@
-import { useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
 import "./featuredProperties.scss";
 
 const FeaturedProperties = () => {
-  const { data } = useFetch("/hotels?featured=true");
-
+  const { data, loading } = useFetch("/hotels?featured=true");
   return (
     <div className="fp">
-      {data &&
-        data.map((item) => (
+      <>
+        {data.map((item) => (
           <div className="fpItem" key={item._id}>
             <img src={item.photos[0]} alt="" className="fpImg" />
             <span className="fpName">{item.name}</span>
@@ -26,6 +24,7 @@ const FeaturedProperties = () => {
             )}
           </div>
         ))}
+      </>
     </div>
   );
 };
