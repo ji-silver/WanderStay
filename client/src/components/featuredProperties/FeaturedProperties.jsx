@@ -3,11 +3,8 @@ import useFetch from "../../hooks/useFetch";
 import "./featuredProperties.scss";
 
 const FeaturedProperties = () => {
-  const { data, loading } = useFetch("/hotels?featured=true");
+  const { data } = useFetch("/hotels?featured=true");
 
-  if (!data || data.length === 0) {
-    return <div>Loading...</div>;
-  }
   return (
     <div className="fp">
       {data &&
