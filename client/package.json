@@ -47,5 +47,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "https://port-0-hotel-booking-app-rt92alklrt6ak.sel4.cloudtype.app/api"
 }
