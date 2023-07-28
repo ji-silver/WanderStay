@@ -25,15 +25,13 @@ mongoose.connection.on("disconnected", () => {
   console.log("mongoDb가 연결되어 있지 않습니다!");
 });
 
-const corsOptions = {
-  origin: [
-    "http://localhost:8800",
-    "https://port-0-hotel-booking-app-rt92alklrt6ak.sel4.cloudtype.app",
-  ],
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: ['http://localhost:8000', 'https://port-0-hotel-booking-app-rt92alklrt6ak.sel4.cloudtype.app'],
+    credentials: true,
+    optionsSuccessStatus: 200,
+  })
+);
 
 app.use(cookieParser());
 app.use(express.json());
