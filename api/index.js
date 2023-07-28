@@ -27,14 +27,10 @@ mongoose.connection.on("disconnected", () => {
 
 app.use(
   cors({
-<<<<<<< HEAD
     origin: [
       "http://localhost:8000",
       "https://port-0-hotel-booking-app-rt92alklrt6ak.sel4.cloudtype.app",
     ],
-=======
-    origin: ['http://localhost:8000', 'https://port-0-hotel-booking-app-rt92alklrt6ak.sel4.cloudtype.app'],
->>>>>>> e19f54717a3d0f771b0fec147a61ab43da41ef7b
     credentials: true,
     optionsSuccessStatus: 200,
   })
