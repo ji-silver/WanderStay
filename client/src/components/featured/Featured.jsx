@@ -3,7 +3,7 @@ import useFetch from "../../hooks/useFetch";
 
 const Featured = () => {
   const { data, loading } = useFetch(
-    "/api/hotels/countByCity?cities=서울,부산,강릉"
+    "/hotels/countByCity?cities=서울,부산,강릉"
   );
   return (
     <div className="featured">

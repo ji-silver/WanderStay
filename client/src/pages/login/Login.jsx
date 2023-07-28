@@ -28,7 +28,7 @@ const Login = () => {
     dispatch({ type: "LOGIN_START" });
     try {
       // 엔드포인트로 credentials (이름, 비밀번호) 전달
-      const res = await axios.post("/auth/login", credentials);
+      const res = await axios.post("/api/auth/login", credentials);
       // 로그인 성공 시 액션 디스패치 후 받은 데이터를 payload에 전달
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
       // 메인 페이지로 리다이렉트

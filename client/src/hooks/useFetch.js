@@ -18,7 +18,6 @@ const useFetch = (url) => {
         setData(res.data);
       } catch (err) {
         console.error(err);
-        console.log(url)
         setError(err);
       }
       // 완료 하면 로딩 상태 false

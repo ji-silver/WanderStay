@@ -8,7 +8,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const NewHotel = () => {
-  const { data } = useFetch("/api/rooms");
+  const { data } = useFetch("/rooms");
   const navigate = useNavigate();
   const [files, setFiles] = useState("");
   const [isChecked, setIsChecked] = useState(false);
