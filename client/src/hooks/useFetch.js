@@ -17,6 +17,7 @@ const useFetch = (url) => {
         const res = await axios.get(url);
         setData(res.data);
       } catch (err) {
+        console.error(err);
         setError(err);
       }
       // 완료 하면 로딩 상태 false
