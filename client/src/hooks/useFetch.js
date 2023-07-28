@@ -16,6 +16,8 @@ const useFetch = (url) => {
         // 데이터 가져오기
         const res = await axios.get(url);
         setData(res.data);
+        console.log(url)
+        console.log(res.data)
       } catch (err) {
         console.error(err);
         setError(err);
