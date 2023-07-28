@@ -30,6 +30,7 @@ const corsOptions = {
     "http://localhost:8800",
     "https://port-0-hotel-booking-app-rt92alklrt6ak.sel4.cloudtype.app",
   ],
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
