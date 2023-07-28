@@ -15,7 +15,7 @@ const Info = () => {
   const { id } = location.state.params;
   // hotels는 뒤에 find 경로가 붙어야 함
   const { data } = useFetch(
-    `/${path}${path === "hotels" ? "/find" : ""}/${id}`
+    `/api/${path}${path === "hotels" ? "/find" : ""}/${id}`
   );
   const inputs =
     path === "users"

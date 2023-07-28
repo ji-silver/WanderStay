@@ -8,7 +8,7 @@ import { handlePhone } from "../../utils/CommonFunction";
 
 const MyPage = () => {
   const { user, dispatch } = useContext(AuthContext);
-  const { data, loading } = useFetch(`/users/${user._id}`);
+  const { data, loading } = useFetch(`/api/users/${user._id}`);
   const [errorMessage, setErrorMessage] = useState("");
   const [updateUser, setUpdateUser] = useState({
     username: "",

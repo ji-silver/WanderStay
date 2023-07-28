@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const NewRoom = () => {
   const navigate = useNavigate();
-  const { data } = useFetch("/hotels");
+  const { data } = useFetch("/api/hotels");
   const [hotelId, setHotelId] = useState("");
   const [rooms, setRooms] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");

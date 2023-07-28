@@ -21,7 +21,7 @@ const List = () => {
 
   // 목적지, 최소, 최대 가격 옵션대로 get 하기
   const { data, reFetch } = useFetch(
-    `/hotels?city=${destination}&min=${min || 0}&max=${max || 1000000}`
+    `/api/hotels?city=${destination}&min=${min || 0}&max=${max || 1000000}`
   );
 
   // 옵션대로 재검색 하기

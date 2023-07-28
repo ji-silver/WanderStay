@@ -3,7 +3,7 @@ import useFetch from "../../hooks/useFetch";
 
 const PropertyList = () => {
   // useFetch 훅 사용 (json 데이터 가져오기)
-  const { data, loading } = useFetch("/hotels/countByType");
+  const { data, loading } = useFetch("/api/hotels/countByType");
   const images = [
     "https://www.ahstatic.com/photos/b220_ho_00_p_2048x1536.jpg",
     "https://images.unsplash.com/photo-1576354302919-96748cb8299e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=929&q=80",
