@@ -21,14 +21,14 @@ const Login = () => {
     // 현재 변경된 입력 필드의 이름 id (키) - 현재 변경된 값 (값)
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
-
+  const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
   const handleClick = async (e) => {
     e.preventDefault();
     // 액션을 dispatch를 통해 컨텍스트로 전달
     dispatch({ type: "LOGIN_START" });
     try {
       // 엔드포인트로 credentials (이름, 비밀번호) 전달
-      const res = await axios.post("/api/auth/login", credentials);
+      const res = await axios.post(`${PROXY}/api/auth/login`, credentials);
       // 로그인 성공 시 액션 디스패치 후 받은 데이터를 payload에 전달
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
       // 메인 페이지로 리다이렉트

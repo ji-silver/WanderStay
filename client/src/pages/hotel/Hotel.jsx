@@ -23,8 +23,8 @@ const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-
-  const { data, loading } = useFetch(`/hotels/find/${id}`);
+  const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
+  const { data, loading } = useFetch(`${PROXY}/api/hotels/find/${id}`);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 

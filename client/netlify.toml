@@ -1,5 +1,5 @@
 [[redirects]]
 from = "/proxy/*"
-  to = "https://port-0-hotel-booking-app-rt92alklrt6ak.sel4.cloudtype.app/api/:splat"  
+  to = "https://port-0-hotel-booking-app-rt92alklrt6ak.sel4.cloudtype.app/:splat"  
   status = 200
   force = true

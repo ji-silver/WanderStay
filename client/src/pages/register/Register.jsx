@@ -10,6 +10,7 @@ import "./register.scss";
 import axios from "axios";
 
 const Register = () => {
+  const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
   const [newUser, setNewUser] = useState({
     username: "",
     email: "",
@@ -54,7 +55,7 @@ const Register = () => {
     }
 
     try {
-      await axios.post("/auth/register", newUser);
+      await axios.post(`${PROXY}/api/auth/register`, newUser);
       alert("회원가입 되었습니다.");
       navigate("/login");
     } catch (err) {
