@@ -2,8 +2,9 @@ import "./featured.scss";
 import useFetch from "../../hooks/useFetch";
 
 const Featured = () => {
+  const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
   const { data, loading } = useFetch(
-    "/hotels/countByCity?cities=서울,부산,강릉"
+    `${PROXY}/api/hotels/countByCity?cities=서울,부산,강릉`
   );
   return (
     <div className="featured">

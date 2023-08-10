@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { handlePhone } from "../../utils/CommonFunction";
 
 const MyPage = () => {
+  const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
   const { user, dispatch } = useContext(AuthContext);
   const { data, loading } = useFetch(`/users/${user._id}`);
   const [errorMessage, setErrorMessage] = useState("");
@@ -49,7 +50,7 @@ const MyPage = () => {
       return;
     }
     try {
-      await axios.put(`/users/${user._id}`, updateUser);
+      await axios.put(`${PROXY}/api/users/${user._id}`, updateUser);
       alert("수정되었습니다.");
       dispatch({ type: "UPDATE_USER", payload: updateUser });
       navigate("/");
