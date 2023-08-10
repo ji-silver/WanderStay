@@ -18,10 +18,10 @@ const List = () => {
   const [options, setOptions] = useState(location.state.options);
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
-
+  const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
   // 목적지, 최소, 최대 가격 옵션대로 get 하기
   const { data, reFetch } = useFetch(
-    `/hotels?city=${destination}&min=${min || 0}&max=${max || 1000000}`
+    `${PROXY}/hotels?city=${destination}&min=${min || 0}&max=${max || 1000000}`
   );
 
   // 옵션대로 재검색 하기
