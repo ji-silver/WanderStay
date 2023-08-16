@@ -7,9 +7,15 @@
 원하는 날짜와 가격을 비교하여 숙소를 예약할 수 있고, 관리자 페이지를 구현하여 기본적인 CRUD 기능이 가능하도록 풀스택 개발 목표로 구현하였습니다.
 
 ## 시작
-### Front-End
+### Front-End (user)
 ```javascript
 cd client
+npm install
+npm start
+```
+### Front-End (admin)
+```javascript
+cd admin
 npm install
 npm start
 ```
