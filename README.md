@@ -1,4 +1,4 @@
-# 국내 숙박 예약 웹 서비스 WanderStay
+# WanderStay
 <a href="https://wanderstay.jisilver.shop/">Live Site</a>
 <img src="https://github.com/ji-silver/WanderStay/assets/59919953/0d91c25d-3ddc-45d5-bbe3-0078c335668d">
 
