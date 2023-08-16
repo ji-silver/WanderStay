@@ -20,6 +20,12 @@ npm install
 npm start
 ```
 ### Back-End
+root .env 환경변수 설정
+```ini
+MONGO = mongoDB 주소
+JWT = test
+```
+
 ```javascript
 cd api
 npm install
