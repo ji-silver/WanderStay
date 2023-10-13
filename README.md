@@ -6,7 +6,7 @@
 ![wanderstay](https://github.com/ji-silver/Blog/assets/59919953/b066b48e-00b1-45f4-83fa-8316c0239300)
 
 
-### <a href="https://wanderstay.jisilver.shop/">🖥️ Website</a>
+### <a href="https://wanderstayapp.netlify.app/" target="blank">🖥️ Website</a>
 </div>
 
 
