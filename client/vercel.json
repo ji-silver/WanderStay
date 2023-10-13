@@ -1,0 +1,8 @@
+{
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "https://port-0-hotel-booking-app-rt92alklrt6ak.sel4.cloudtype.app/:path*"
+    }
+  ]
+}
