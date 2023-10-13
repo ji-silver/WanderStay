@@ -1,8 +1,8 @@
 {
-  "routes": [
+  "rewrites": [
     {
-      "src": "/proxy/*",
-      "dest": "https://port-0-hotel-booking-app-rt92alklrt6ak.sel4.cloudtype.app/:splat"
+      "source": "/proxy/:path*",
+      "destination": "https://port-0-hotel-booking-app-rt92alklrt6ak.sel4.cloudtype.app/:path*"
     }
   ]
 }
